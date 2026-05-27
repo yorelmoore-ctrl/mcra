@@ -2,55 +2,183 @@
 <html lang="en">
 
 <head>
+
   <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
 
   <title>Evidence I Exist</title>
 
-  <meta name="theme-color" content="#a688d4">
-  <meta name="description" content="A digital sanctuary for healing, recovery, emotional regulation, and becoming.">
+  <meta
+    name="theme-color"
+    content="#a688d4"
+  />
 
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta
+    name="description"
+    content="A digital sanctuary for healing, recovery, emotional regulation, and becoming."
+  />
 
-  <link rel="manifest" href="manifest.json">
+  <meta
+    name="apple-mobile-web-app-capable"
+    content="yes"
+  />
 
-  <link rel="icon" href="favicon.png">
-  <link rel="apple-touch-icon" href="favicon.png">
+  <meta
+    name="apple-mobile-web-app-status-bar-style"
+    content="black-translucent"
+  />
 
-  <link rel="stylesheet" href="style.css">
+  <link
+    rel="manifest"
+    href="manifest.json"
+  />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    rel="icon"
+    href="favicon.png"
+  />
 
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link
+    rel="apple-touch-icon"
+    href="favicon.png"
+  />
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  />
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  />
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;700&display=swap"
+    rel="stylesheet"
+  />
+
 </head>
 
-<body>
+<body class="earth animated-bg">
 
   <header class="topbar fade-in">
+
     <h1>Evidence I Exist</h1>
+
     <p>Your digital sanctuary ✨</p>
+
   </header>
 
   <main>
+
+    <!-- Theme -->
+
+    <section class="panel fade-in">
+
+      <h2>Theme Customizer</h2>
+
+      <select id="themePicker">
+
+        <option value="earth">
+          Earth Goddess
+        </option>
+
+        <option value="moon">
+          Moon Dream
+        </option>
+
+        <option value="forest">
+          Forest Sanctuary
+        </option>
+
+      </select>
+
+    </section>
+
+    <!-- Daily Quote -->
+
+    <section class="panel fade-in">
+
+      <h2>Daily Reminder</h2>
+
+      <p id="dailyQuote"></p>
+
+    </section>
+
+    <!-- Mood -->
 
     <section class="panel fade-in">
 
       <h2>Mood Tracker</h2>
 
       <select id="mood">
-        <option value="">Choose your mood</option>
+
+        <option value="">
+          Choose your mood
+        </option>
+
         <option>Peaceful</option>
         <option>Overwhelmed</option>
         <option>Hopeful</option>
         <option>Disconnected</option>
         <option>Grounded</option>
+
       </select>
 
-      <button id="saveMood">Save Mood</button>
+      <button id="saveMood">
+        Save Mood
+      </button>
 
     </section>
+
+    <!-- Emotional Wheel -->
+
+    <section class="panel fade-in">
+
+      <h2>Emotional Wheel</h2>
+
+      <div class="emotion-grid">
+
+        <button class="emotion">
+          Hopeful
+        </button>
+
+        <button class="emotion">
+          Anxious
+        </button>
+
+        <button class="emotion">
+          Disconnected
+        </button>
+
+        <button class="emotion">
+          Peaceful
+        </button>
+
+        <button class="emotion">
+          Overwhelmed
+        </button>
+
+        <button class="emotion">
+          Grounded
+        </button>
+
+      </div>
+
+    </section>
+
+    <!-- Water -->
 
     <section class="panel fade-in">
 
@@ -58,15 +186,23 @@
 
       <div class="water-controls">
 
-        <button id="waterMinus">-</button>
+        <button id="waterMinus">
+          -
+        </button>
 
-        <span id="waterCount">0</span>
+        <span id="waterCount">
+          0
+        </span>
 
-        <button id="waterPlus">+</button>
+        <button id="waterPlus">
+          +
+        </button>
 
       </div>
 
     </section>
+
+    <!-- Journal -->
 
     <section class="panel fade-in">
 
@@ -74,28 +210,235 @@
 
       <textarea
         id="journal"
-        placeholder="Write your thoughts here..."
+        placeholder="Write your thoughts..."
       ></textarea>
 
-      <button id="saveJournal">Save Entry</button>
+      <button id="saveJournal">
+        Save Entry
+      </button>
 
     </section>
+
+    <!-- Voice -->
+
+    <section class="panel fade-in">
+
+      <h2>Voice Journal</h2>
+
+      <button id="recordBtn">
+        Start Recording
+      </button>
+
+      <audio
+        id="voicePlayback"
+        controls
+      ></audio>
+
+    </section>
+
+    <!-- Symptoms -->
+
+    <section class="panel fade-in">
+
+      <h2>Symptom Tracker</h2>
+
+      <textarea
+        id="symptoms"
+        placeholder="Track symptoms..."
+      ></textarea>
+
+      <button id="saveSymptoms">
+        Save Symptoms
+      </button>
+
+    </section>
+
+    <!-- Dreams -->
+
+    <section class="panel fade-in">
+
+      <h2>Dream Journal</h2>
+
+      <textarea
+        id="dreamJournal"
+        placeholder="Record your dreams..."
+      ></textarea>
+
+      <button id="saveDreams">
+        Save Dream
+      </button>
+
+    </section>
+
+    <!-- Oracle -->
 
     <section class="panel fade-in">
 
       <h2>Oracle Message</h2>
 
-      <button id="oracleBtn">Reveal Message</button>
+      <button id="oracleBtn">
+        Reveal Message
+      </button>
 
       <p id="oracleText"></p>
 
     </section>
 
+    <!-- Tarot -->
+
     <section class="panel fade-in">
 
-      <h2>Main Character Quest</h2>
+      <h2>Tarot Guidance</h2>
+
+      <button id="drawTarot">
+        Draw Card
+      </button>
+
+      <p id="tarotResult"></p>
+
+    </section>
+
+    <!-- AI -->
+
+    <section class="panel fade-in">
+
+      <h2>Reflection Prompt</h2>
+
+      <button id="promptBtn">
+        Generate Prompt
+      </button>
+
+      <p id="promptText"></p>
+
+    </section>
+
+    <!-- Quests -->
+
+    <section class="panel fade-in">
+
+      <h2>Main Character Quests</h2>
 
       <ul id="questList"></ul>
+
+    </section>
+
+    <!-- XP -->
+
+    <section class="panel fade-in">
+
+      <h2>Recovery Level</h2>
+
+      <div class="xp-bar">
+
+        <div id="xpFill"></div>
+
+      </div>
+
+      <p id="xpText">
+        Level 1 — 0 XP
+      </p>
+
+      <button id="gainXP">
+        Complete Healing Quest
+      </button>
+
+    </section>
+
+    <!-- Badges -->
+
+    <section class="panel fade-in">
+
+      <h2>Achievements</h2>
+
+      <div id="badges"></div>
+
+    </section>
+
+    <!-- Streak -->
+
+    <section class="panel fade-in">
+
+      <h2>Recovery Streak</h2>
+
+      <p id="streakText">
+        1 Day Streak
+      </p>
+
+    </section>
+
+    <!-- Ritual -->
+
+    <section class="panel fade-in">
+
+      <h2>Bedtime Rituals</h2>
+
+      <ul class="ritual-list">
+
+        <li>✨ Stretch</li>
+        <li>🌙 Drink water</li>
+        <li>📖 Journal</li>
+        <li>🕯️ Breathe deeply</li>
+
+      </ul>
+
+    </section>
+
+    <!-- Music -->
+
+    <section class="panel fade-in">
+
+      <h2>Sanctuary Sounds</h2>
+
+      <label>
+        Choose Your Atmosphere
+      </label>
+
+      <select id="musicSelector">
+
+        <option value="assets/music/chrysalis.mp3">
+          Chrysalis
+        </option>
+
+        <option value="assets/music/jazzy-love.mp3">
+          Jazzy Love
+        </option>
+
+        <option value="assets/music/study-lofi.mp3">
+          Study Lofi
+        </option>
+
+        <option value="assets/music/lofi-girl.mp3">
+          Lofi Girl
+        </option>
+
+        <option value="assets/music/dreamscape.mp3">
+          Dreamscape
+        </option>
+
+      </select>
+
+      <audio
+        id="musicPlayer"
+        controls
+        loop
+      >
+
+        <source
+          src="assets/music/chrysalis.mp3"
+          type="audio/mpeg"
+        />
+
+      </audio>
+
+    </section>
+
+    <!-- Reset -->
+
+    <section class="panel fade-in">
+
+      <button id="resetApp">
+        Reset Sanctuary
+      </button>
 
     </section>
 
