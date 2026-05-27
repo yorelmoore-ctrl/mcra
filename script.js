@@ -1,782 +1,612 @@
 // ======================================
-// EVIDENCE I EXIST — SCRIPT.JS
+// DAILY QUOTES
 // ======================================
 
-const STORE_KEY = 'eie_v4';
+const quotes = [
 
-// ─────────────────────────────
-// Error Protection
-// ─────────────────────────────
+  "Healing is not linear.",
 
-window.addEventListener('error', (e) => {
+  "You survived every hard day so far.",
 
-  console.log(
-    'JS Error:',
-    e.message
+  "Rest is productive too.",
+
+  "Small progress is still progress.",
+
+  "You are allowed to begin again."
+
+];
+
+const dailyQuote =
+  document.getElementById(
+    'dailyQuote'
   );
 
-});
+if (dailyQuote) {
 
-// ─────────────────────────────
-// Storage
-// ─────────────────────────────
-
-function getData() {
-
-  try {
-
-    return JSON.parse(
-      localStorage.getItem(STORE_KEY)
-    ) || {};
-
-  } catch {
-
-    return {};
-
-  }
+  dailyQuote.textContent =
+    quotes[
+      Math.floor(
+        Math.random() *
+        quotes.length
+      )
+    ];
 
 }
 
-function setData(patch) {
+// ======================================
+// TAB SYSTEM
+// ======================================
 
-  try {
+document.addEventListener(
+  'DOMContentLoaded',
+  () => {
 
-    const current = getData();
+    const navButtons =
+      document.querySelectorAll(
+        '.nav-btn'
+      );
 
-    localStorage.setItem(
-      STORE_KEY,
-      JSON.stringify({
-        ...current,
-        ...patch
-      })
+    const tabPanels =
+      document.querySelectorAll(
+        '.tab-panel'
+      );
+
+    navButtons.forEach(button => {
+
+      button.addEventListener(
+        'click',
+        () => {
+
+          const targetTab =
+            button.dataset.tab;
+
+          navButtons.forEach(btn => {
+
+            btn.classList.remove(
+              'active'
+            );
+
+          });
+
+          tabPanels.forEach(panel => {
+
+            panel.classList.remove(
+              'active'
+            );
+
+          });
+
+          button.classList.add(
+            'active'
+          );
+
+          const selectedPanel =
+            document.getElementById(
+              targetTab
+            );
+
+          if (selectedPanel) {
+
+            selectedPanel.classList.add(
+              'active'
+            );
+
+          }
+
+        }
+      );
+
+    });
+
+  }
+);
+
+// ======================================
+// WATER TRACKER
+// ======================================
+
+let water =
+  Number(
+    localStorage.getItem(
+      'waterCount'
+    )
+  ) || 0;
+
+const waterCount =
+  document.getElementById(
+    'waterCount'
+  );
+
+function updateWater() {
+
+  if (waterCount) {
+
+    waterCount.textContent =
+      water;
+
+  }
+
+  localStorage.setItem(
+    'waterCount',
+    water
+  );
+
+}
+
+document
+  .getElementById(
+    'waterPlus'
+  )
+  ?.addEventListener(
+    'click',
+    () => {
+
+      water++;
+
+      updateWater();
+
+    }
+  );
+
+document
+  .getElementById(
+    'waterMinus'
+  )
+  ?.addEventListener(
+    'click',
+    () => {
+
+      if (water > 0) {
+
+        water--;
+
+      }
+
+      updateWater();
+
+    }
+  );
+
+updateWater();
+
+// ======================================
+// XP SYSTEM
+// ======================================
+
+let xp =
+  Number(
+    localStorage.getItem(
+      'xp'
+    )
+  ) || 0;
+
+const xpFill =
+  document.getElementById(
+    'xpFill'
+  );
+
+const xpText =
+  document.getElementById(
+    'xpText'
+  );
+
+function updateXP() {
+
+  const level =
+    Math.floor(xp / 100) + 1;
+
+  const progress =
+    xp % 100;
+
+  if (xpFill) {
+
+    xpFill.style.width =
+      progress + '%';
+
+  }
+
+  if (xpText) {
+
+    xpText.textContent =
+      `Level ${level} — ${xp} XP`;
+
+  }
+
+  localStorage.setItem(
+    'xp',
+    xp
+  );
+
+}
+
+document
+  .getElementById(
+    'gainXP'
+  )
+  ?.addEventListener(
+    'click',
+    () => {
+
+      xp += 15;
+
+      updateXP();
+
+      showToast(
+        'Healing XP gained ✨'
+      );
+
+    }
+  );
+
+updateXP();
+
+// ======================================
+// JOURNAL SAVE
+// ======================================
+
+const journal =
+  document.getElementById(
+    'journal'
+  );
+
+document
+  .getElementById(
+    'saveJournal'
+  )
+  ?.addEventListener(
+    'click',
+    () => {
+
+      localStorage.setItem(
+        'journal',
+        journal.value
+      );
+
+      saveArchive({
+
+        type: 'Journal',
+
+        title:
+          'Daily Reflection',
+
+        content:
+          journal.value,
+
+        date:
+          new Date()
+          .toLocaleString()
+
+      });
+
+      showToast(
+        'Journal saved'
+      );
+
+    }
+  );
+
+if (journal) {
+
+  journal.value =
+    localStorage.getItem(
+      'journal'
+    ) || '';
+
+}
+
+// ======================================
+// DREAM JOURNAL
+// ======================================
+
+const dreamJournal =
+  document.getElementById(
+    'dreamJournal'
+  );
+
+document
+  .getElementById(
+    'saveDreams'
+  )
+  ?.addEventListener(
+    'click',
+    () => {
+
+      localStorage.setItem(
+        'dreamJournal',
+        dreamJournal.value
+      );
+
+      saveArchive({
+
+        type: 'Dream',
+
+        title:
+          'Dream Journal',
+
+        content:
+          dreamJournal.value,
+
+        date:
+          new Date()
+          .toLocaleString()
+
+      });
+
+      showToast(
+        'Dream saved'
+      );
+
+    }
+  );
+
+// ======================================
+// SYMPTOMS
+// ======================================
+
+const symptoms =
+  document.getElementById(
+    'symptoms'
+  );
+
+document
+  .getElementById(
+    'saveSymptoms'
+  )
+  ?.addEventListener(
+    'click',
+    () => {
+
+      localStorage.setItem(
+        'symptoms',
+        symptoms.value
+      );
+
+      saveArchive({
+
+        type: 'Symptoms',
+
+        title:
+          'Symptom Log',
+
+        content:
+          symptoms.value,
+
+        date:
+          new Date()
+          .toLocaleString()
+
+      });
+
+      showToast(
+        'Symptoms saved'
+      );
+
+    }
+  );
+
+// ======================================
+// ARCHIVE
+// ======================================
+
+const archiveContainer =
+  document.getElementById(
+    'archiveContainer'
+  );
+
+function getArchive() {
+
+  return JSON.parse(
+    localStorage.getItem(
+      'sanctuaryArchive'
+    )
+  ) || [];
+
+}
+
+function saveArchive(item) {
+
+  const archive =
+    getArchive();
+
+  archive.unshift(item);
+
+  localStorage.setItem(
+    'sanctuaryArchive',
+    JSON.stringify(archive)
+  );
+
+  renderArchive();
+
+}
+
+function renderArchive() {
+
+  if (!archiveContainer) return;
+
+  archiveContainer.innerHTML =
+    '';
+
+  const archive =
+    getArchive();
+
+  archive.forEach(item => {
+
+    const card =
+      document.createElement(
+        'div'
+      );
+
+    card.className =
+      'archive-card';
+
+    card.innerHTML = `
+
+      <div class="archive-type">
+        ${item.type}
+      </div>
+
+      <div class="archive-date">
+        ${item.date}
+      </div>
+
+      <h3>
+        ${item.title}
+      </h3>
+
+      <p>
+        ${item.content}
+      </p>
+
+    `;
+
+    archiveContainer.appendChild(
+      card
     );
 
-  } catch (err) {
-
-    console.error(err);
-
-  }
+  });
 
 }
 
-// ─────────────────────────────
-// Toast
-// ─────────────────────────────
+renderArchive();
+
+// ======================================
+// TAROT
+// ======================================
+
+const tarotCards = [
+
+  "The Star ✨",
+
+  "The Moon 🌙",
+
+  "The Hermit 🕯️",
+
+  "Strength 🦁",
+
+  "The Empress 🌿"
+
+];
+
+document
+  .getElementById(
+    'drawTarot'
+  )
+  ?.addEventListener(
+    'click',
+    () => {
+
+      document.getElementById(
+        'tarotResult'
+      ).textContent =
+
+        tarotCards[
+          Math.floor(
+            Math.random() *
+            tarotCards.length
+          )
+        ];
+
+    }
+  );
+
+// ======================================
+// MUSIC
+// ======================================
+
+const musicSelector =
+  document.getElementById(
+    'musicSelector'
+  );
+
+const musicPlayer =
+  document.getElementById(
+    'musicPlayer'
+  );
+
+musicSelector
+  ?.addEventListener(
+    'change',
+    () => {
+
+      musicPlayer.src =
+        musicSelector.value;
+
+      musicPlayer.play();
+
+    }
+  );
+
+// ======================================
+// TOAST
+// ======================================
 
 function showToast(message) {
 
-  const toast =
-    document.getElementById('toast');
+  let toast =
+    document.getElementById(
+      'toast'
+    );
 
-  if (!toast) return;
+  if (!toast) {
 
-  toast.textContent = message;
+    toast =
+      document.createElement(
+        'div'
+      );
 
-  toast.classList.add('show');
+    toast.id = 'toast';
 
-  clearTimeout(toast._timer);
+    document.body.appendChild(
+      toast
+    );
 
-  toast._timer = setTimeout(() => {
+  }
 
-    toast.classList.remove('show');
+  toast.textContent =
+    message;
+
+  toast.classList.add(
+    'show'
+  );
+
+  setTimeout(() => {
+
+    toast.classList.remove(
+      'show'
+    );
 
   }, 2500);
 
 }
 
-// ─────────────────────────────
-// Data
-// ─────────────────────────────
+// ======================================
+// SERVICE WORKER
+// ======================================
 
-const oracleMessages = [
+if (
+  'serviceWorker'
+  in navigator
+) {
 
-  "Healing is still progress.",
+  window.addEventListener(
+    'load',
+    () => {
 
-  "You deserve gentleness.",
-
-  "You are rebuilding beautifully.",
-
-  "Rest is productive too.",
-
-  "Your existence matters."
-
-];
-
-const tarotCards = [
-
-  "The Star — hope returns.",
-
-  "Strength — resilience grows.",
-
-  "The Moon — intuition matters.",
-
-  "The Sun — brighter days come.",
-
-  "The Hermit — reflect deeply."
-
-];
-
-const prompts = [
-
-  "What emotion needs care today?",
-
-  "What helped you survive recently?",
-
-  "What feels emotionally safe?",
-
-  "What are you becoming?"
-
-];
-
-const quotes = [
-
-  "You are allowed to heal slowly.",
-
-  "Small progress is still progress.",
-
-  "Your story still matters.",
-
-  "Healing takes time.",
-
-  "You deserve softness too."
-
-];
-
-const QUESTS = [
-
-  "Drink water",
-
-  "Stretch gently",
-
-  "Write one feeling",
-
-  "Listen to calming music",
-
-  "Step outside briefly"
-
-];
-
-// ─────────────────────────────
-// App Init
-// ─────────────────────────────
-
-window.addEventListener(
-  'DOMContentLoaded',
-  () => {
-
-    const data = getData();
-
-    // Quote
-
-    document.getElementById(
-      'dailyQuote'
-    ).textContent =
-      quotes[
-        Math.floor(
-          Math.random() *
-          quotes.length
+      navigator
+        .serviceWorker
+        .register(
+          './service-worker.js'
         )
-      ];
 
-    // Theme
+        .then(() => {
 
-    const themePicker =
-      document.getElementById(
-        'themePicker'
-      );
-
-    const savedTheme =
-      localStorage.getItem(
-        'theme'
-      ) || 'earth';
-
-    document.body.classList.add(
-      savedTheme
-    );
-
-    themePicker.value =
-      savedTheme;
-
-    themePicker.addEventListener(
-      'change',
-      () => {
-
-        document.body.className =
-          'animated-bg';
-
-        document.body.classList.add(
-          themePicker.value
-        );
-
-        localStorage.setItem(
-          'theme',
-          themePicker.value
-        );
-
-      }
-    );
-
-    // Mood
-
-    const mood =
-      document.getElementById(
-        'mood'
-      );
-
-    mood.value =
-      data.mood || '';
-
-    document.getElementById(
-      'saveMood'
-    ).addEventListener(
-      'click',
-      () => {
-
-        if (!mood.value) {
-
-          showToast(
-            'Choose a mood first'
+          console.log(
+            'Offline mode enabled'
           );
 
-          return;
-
-        }
-
-        setData({
-          mood: mood.value
         });
-
-        showToast(
-          'Mood saved ✨'
-        );
-
-      }
-    );
-
-    // Water
-
-    let water =
-      data.water || 0;
-
-    const waterCount =
-      document.getElementById(
-        'waterCount'
-      );
-
-    waterCount.textContent =
-      water;
-
-    document.getElementById(
-      'waterPlus'
-    ).addEventListener(
-      'click',
-      () => {
-
-        water++;
-
-        waterCount.textContent =
-          water;
-
-        setData({ water });
-
-      }
-    );
-
-    document.getElementById(
-      'waterMinus'
-    ).addEventListener(
-      'click',
-      () => {
-
-        if (water > 0) {
-
-          water--;
-
-        }
-
-        waterCount.textContent =
-          water;
-
-        setData({ water });
-
-      }
-    );
-
-    // Journal
-
-    const journal =
-      document.getElementById(
-        'journal'
-      );
-
-    journal.value =
-      data.journal || '';
-
-    function saveJournal() {
-
-      setData({
-        journal: journal.value
-      });
 
     }
+  );
 
-    journal.addEventListener(
-      'input',
-      saveJournal
-    );
-
-    document.getElementById(
-      'saveJournal'
-    ).addEventListener(
-      'click',
-      () => {
-
-        saveJournal();
-
-        showToast(
-          'Journal saved 🌙'
-        );
-
-      }
-    );
-
-    // Symptoms
-
-    const symptoms =
-      document.getElementById(
-        'symptoms'
-      );
-
-    symptoms.value =
-      data.symptoms || '';
-
-    document.getElementById(
-      'saveSymptoms'
-    ).addEventListener(
-      'click',
-      () => {
-
-        setData({
-          symptoms:
-            symptoms.value
-        });
-
-        showToast(
-          'Symptoms saved'
-        );
-
-      }
-    );
-
-    // Dreams
-
-    const dreams =
-      document.getElementById(
-        'dreamJournal'
-      );
-
-    dreams.value =
-      data.dreams || '';
-
-    document.getElementById(
-      'saveDreams'
-    ).addEventListener(
-      'click',
-      () => {
-
-        setData({
-          dreams:
-            dreams.value
-        });
-
-        showToast(
-          'Dream saved ✨'
-        );
-
-      }
-    );
-
-    // Oracle
-
-    document.getElementById(
-      'oracleBtn'
-    ).addEventListener(
-      'click',
-      () => {
-
-        document.getElementById(
-          'oracleText'
-        ).textContent =
-          oracleMessages[
-            Math.floor(
-              Math.random() *
-              oracleMessages.length
-            )
-          ];
-
-      }
-    );
-
-    // Tarot
-
-    document.getElementById(
-      'drawTarot'
-    ).addEventListener(
-      'click',
-      () => {
-
-        document.getElementById(
-          'tarotResult'
-        ).textContent =
-          tarotCards[
-            Math.floor(
-              Math.random() *
-              tarotCards.length
-            )
-          ];
-
-      }
-    );
-
-    // Reflection Prompts
-
-    document.getElementById(
-      'promptBtn'
-    ).addEventListener(
-      'click',
-      () => {
-
-        document.getElementById(
-          'promptText'
-        ).textContent =
-          prompts[
-            Math.floor(
-              Math.random() *
-              prompts.length
-            )
-          ];
-
-      }
-    );
-
-    // Quests
-
-    const questList =
-      document.getElementById(
-        'questList'
-      );
-
-    QUESTS.forEach(quest => {
-
-      const li =
-        document.createElement(
-          'li'
-        );
-
-      li.textContent =
-        `✨ ${quest}`;
-
-      li.style.marginBottom =
-        '10px';
-
-      questList.appendChild(li);
-
-    });
-
-    // XP
-
-    let xp =
-      parseInt(
-        localStorage.getItem(
-          'xp'
-        )
-      ) || 0;
-
-    const xpFill =
-      document.getElementById(
-        'xpFill'
-      );
-
-    const xpText =
-      document.getElementById(
-        'xpText'
-      );
-
-    function renderXP() {
-
-      const level =
-        Math.floor(xp / 100) + 1;
-
-      const progress =
-        xp % 100;
-
-      xpFill.style.width =
-        `${progress}%`;
-
-      xpText.textContent =
-        `Level ${level} — ${xp} XP`;
-
-    }
-
-    renderXP();
-
-    document.getElementById(
-      'gainXP'
-    ).addEventListener(
-      'click',
-      () => {
-
-        xp += 10;
-
-        localStorage.setItem(
-          'xp',
-          xp
-        );
-
-        renderXP();
-
-      }
-    );
-
-    // Badges
-
-    const badges =
-      document.getElementById(
-        'badges'
-      );
-
-    [
-
-      "🌙 First Journal",
-
-      "💧 Hydration Hero",
-
-      "✨ Quest Complete",
-
-      "🧠 Emotional Check-In"
-
-    ].forEach(badge => {
-
-      const div =
-        document.createElement(
-          'div'
-        );
-
-      div.className =
-        'badge';
-
-      div.textContent =
-        badge;
-
-      badges.appendChild(div);
-
-    });
-
-    // Streak
-
-    const streak =
-      localStorage.getItem(
-        'streak'
-      ) || 1;
-
-    document.getElementById(
-      'streakText'
-    ).textContent =
-      `${streak} Day Streak`;
-
-    // Music
-
-    const musicSelector =
-      document.getElementById(
-        'musicSelector'
-      );
-
-    const musicPlayer =
-      document.getElementById(
-        'musicPlayer'
-      );
-
-    musicSelector.addEventListener(
-      'change',
-      () => {
-
-        musicPlayer.src =
-          musicSelector.value;
-
-        musicPlayer.play();
-
-      }
-    );
-
-    // Voice Journal
-
-    let mediaRecorder;
-
-    let audioChunks = [];
-
-    const recordBtn =
-      document.getElementById(
-        'recordBtn'
-      );
-
-    const voicePlayback =
-      document.getElementById(
-        'voicePlayback'
-      );
-
-    recordBtn.addEventListener(
-      'click',
-      async () => {
-
-        try {
-
-          if (
-            !mediaRecorder ||
-            mediaRecorder.state ===
-              'inactive'
-          ) {
-
-            const stream =
-              await navigator
-                .mediaDevices
-                .getUserMedia({
-                  audio: true
-                });
-
-            mediaRecorder =
-              new MediaRecorder(
-                stream
-              );
-
-            mediaRecorder.start();
-
-            audioChunks = [];
-
-            mediaRecorder.ondataavailable =
-              e => {
-
-                audioChunks.push(
-                  e.data
-                );
-
-              };
-
-            mediaRecorder.onstop =
-              () => {
-
-                const blob =
-                  new Blob(
-                    audioChunks,
-                    {
-                      type:
-                        'audio/mp3'
-                    }
-                  );
-
-                voicePlayback.src =
-                  URL.createObjectURL(
-                    blob
-                  );
-
-              };
-
-            recordBtn.textContent =
-              'Stop Recording';
-
-          } else {
-
-            mediaRecorder.stop();
-
-            recordBtn.textContent =
-              'Start Recording';
-
-          }
-
-        } catch {
-
-          showToast(
-            'Microphone denied'
-          );
-
-        }
-
-      }
-    );
-
-    // Emotional Buttons
-
-    document
-      .querySelectorAll(
-        '.emotion'
-      )
-      .forEach(btn => {
-
-        btn.addEventListener(
-          'click',
-          () => {
-
-            mood.value =
-              btn.textContent;
-
-            showToast(
-              `Mood set to ${btn.textContent}`
-            );
-
-          }
-        );
-
-      });
-
-    // Reset
-
-    document.getElementById(
-      'resetApp'
-    ).addEventListener(
-      'click',
-      () => {
-
-        localStorage.clear();
-
-        location.reload();
-
-      }
-    );
-
-    // Touch Feedback
-
-    document
-      .querySelectorAll(
-        'button'
-      )
-      .forEach(button => {
-
-        button.addEventListener(
-          'touchstart',
-          () => {
-
-            button.classList.add(
-              'pressed'
-            );
-
-          }
-        );
-
-        button.addEventListener(
-          'touchend',
-          () => {
-
-            button.classList.remove(
-              'pressed'
-            );
-
-          }
-        );
-
-      });
-
-    console.log(
-      'Sanctuary loaded'
-    );
-
-  }
-);
+}
