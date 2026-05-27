@@ -1,5 +1,6 @@
 /* ======================================
-   EVIDENCE I EXIST — STYLE.CSS
+   EVIDENCE I EXIST
+   IMMERSIVE SANCTUARY VERSION
 ====================================== */
 
 * {
@@ -9,24 +10,24 @@
 }
 
 html {
+
   scroll-behavior: smooth;
+
 }
 
 body {
 
   font-family: 'Quicksand', sans-serif;
 
-  color: #f5efff;
-
   min-height: 100vh;
 
-  padding: 20px;
-
-  transition:
-    background 0.5s ease,
-    color 0.5s ease;
+  color: #f4efff;
 
   overflow-x: hidden;
+
+  padding: 30px 18px 120px;
+
+  transition: 0.5s;
 
 }
 
@@ -39,8 +40,9 @@ body.earth {
   background:
     linear-gradient(
       180deg,
-      #0d0b14,
-      #1e1a2c
+      #0d0b14 0%,
+      #171323 30%,
+      #231d36 100%
     );
 
 }
@@ -50,8 +52,9 @@ body.moon {
   background:
     linear-gradient(
       180deg,
-      #17172f,
-      #3a3166
+      #111827 0%,
+      #1e1b4b 50%,
+      #312e81 100%
     );
 
 }
@@ -61,17 +64,18 @@ body.forest {
   background:
     linear-gradient(
       180deg,
-      #102018,
-      #21422f
+      #081c15 0%,
+      #1b4332 45%,
+      #2d6a4f 100%
     );
 
 }
 
 /* ======================================
-   ANIMATED BACKGROUND
+   DREAMY BACKGROUND
 ====================================== */
 
-.animated-bg::before {
+body::before {
 
   content: '';
 
@@ -82,27 +86,31 @@ body.forest {
   background:
     radial-gradient(
       circle at top,
-      rgba(255,255,255,0.08),
+      rgba(255,255,255,0.10),
       transparent 60%
     );
 
-  animation:
-    floatBg 8s infinite alternate;
-
   pointer-events: none;
 
-  z-index: -1;
+  animation:
+    floatGlow 10s infinite alternate;
 
 }
 
-@keyframes floatBg {
+@keyframes floatGlow {
 
   from {
-    transform: translateY(0px);
+
+    transform:
+      translateY(0px);
+
   }
 
   to {
-    transform: translateY(-25px);
+
+    transform:
+      translateY(-25px);
+
   }
 
 }
@@ -115,23 +123,28 @@ body.forest {
 
   text-align: center;
 
-  margin-bottom: 30px;
+  margin-bottom: 35px;
 
 }
 
 .topbar h1 {
 
-  font-size: 2.2rem;
+  font-size: 2.7rem;
+
+  color: #ead8ff;
 
   margin-bottom: 10px;
 
-  color: #e6d3ff;
+  text-shadow:
+    0 0 20px rgba(212,170,255,0.25);
 
 }
 
 .topbar p {
 
-  opacity: 0.85;
+  opacity: 0.82;
+
+  font-size: 1rem;
 
 }
 
@@ -141,55 +154,81 @@ body.forest {
 
 .panel {
 
+  position: relative;
+
   background:
-    rgba(255,255,255,0.06);
+    rgba(255,255,255,0.07);
+
+  backdrop-filter: blur(18px);
 
   border:
-    1px solid rgba(255,255,255,0.08);
+    1px solid rgba(255,255,255,0.10);
 
-  border-radius: 22px;
+  border-radius: 28px;
 
-  padding: 20px;
+  padding: 24px;
 
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 
-  backdrop-filter: blur(10px);
+  overflow: hidden;
 
   box-shadow:
-    0 0 18px rgba(166,136,212,0.12);
+    0 10px 35px rgba(0,0,0,0.25),
+    0 0 25px rgba(166,136,212,0.08);
+
+}
+
+.panel::before {
+
+  content: '';
+
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,0.06),
+      transparent
+    );
+
+  pointer-events: none;
 
 }
 
 .panel h2 {
 
-  margin-bottom: 15px;
+  margin-bottom: 18px;
 
-  color: #d9beff;
+  color: #e5cfff;
+
+  font-size: 1.2rem;
 
 }
 
 /* ======================================
-   FORMS
+   INPUTS
 ====================================== */
 
 button,
-input,
 textarea,
-select {
+select,
+input {
 
   width: 100%;
 
-  padding: 14px;
-
-  border-radius: 14px;
-
   border: none;
 
-  margin-top: 10px;
+  border-radius: 18px;
+
+  padding: 15px;
 
   font-size: 16px;
 
-  touch-action: manipulation;
+  font-family: inherit;
+
+  margin-top: 10px;
 
 }
 
@@ -201,29 +240,47 @@ textarea {
 
 }
 
-button {
+select,
+textarea,
+input {
 
-  background: #a688d4;
+  background:
+    rgba(255,255,255,0.08);
 
   color: white;
 
+}
+
+button {
+
+  background:
+    linear-gradient(
+      135deg,
+      #a688d4,
+      #7c5db0
+    );
+
+  color: white;
+
+  font-weight: 600;
+
   cursor: pointer;
 
-  transition: 0.2s;
+  transition: 0.25s;
 
 }
 
 button:hover {
 
-  transform: translateY(-2px);
+  transform:
+    translateY(-2px);
 
 }
 
-button.pressed {
+button:active {
 
-  transform: scale(0.96);
-
-  opacity: 0.9;
+  transform:
+    scale(0.97);
 
 }
 
@@ -235,11 +292,11 @@ button.pressed {
 
   display: flex;
 
-  align-items: center;
-
   justify-content: center;
 
-  gap: 20px;
+  align-items: center;
+
+  gap: 25px;
 
 }
 
@@ -252,6 +309,156 @@ button.pressed {
 #waterCount {
 
   font-size: 2rem;
+
+}
+
+/* ======================================
+   BREATHING
+====================================== */
+
+.breathing-container {
+
+  display: flex;
+
+  justify-content: center;
+
+  margin: 25px 0;
+
+}
+
+#breathCircle {
+
+  width: 150px;
+
+  height: 150px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      #d7bbff,
+      #8b6ac0
+    );
+
+  box-shadow:
+    0 0 45px rgba(203,170,255,0.35);
+
+  animation:
+    breathe 8s infinite ease-in-out;
+
+}
+
+@keyframes breathe {
+
+  0% {
+
+    transform: scale(1);
+
+  }
+
+  50% {
+
+    transform: scale(1.28);
+
+  }
+
+  100% {
+
+    transform: scale(1);
+
+  }
+
+}
+
+#breathText {
+
+  text-align: center;
+
+  margin-top: 15px;
+
+}
+
+/* ======================================
+   STRETCHES
+====================================== */
+
+.stretch-grid {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, 1fr);
+
+  gap: 12px;
+
+}
+
+.stretch-card {
+
+  background:
+    rgba(255,255,255,0.08);
+
+  border-radius: 18px;
+
+  padding: 18px;
+
+  text-align: center;
+
+}
+
+/* ======================================
+   VIRTUAL ROOM
+====================================== */
+
+#room {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, 1fr);
+
+  gap: 14px;
+
+}
+
+.room-item {
+
+  background:
+    rgba(255,255,255,0.08);
+
+  border-radius: 20px;
+
+  padding: 20px;
+
+  text-align: center;
+
+  transition: 0.25s;
+
+}
+
+.room-item:hover {
+
+  transform:
+    scale(1.04);
+
+  background:
+    rgba(255,255,255,0.12);
+
+}
+
+/* ======================================
+   EMOTIONS
+====================================== */
+
+.emotion-grid {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, 1fr);
+
+  gap: 10px;
 
 }
 
@@ -278,28 +485,18 @@ button.pressed {
 
 #xpFill {
 
-  width: 0%;
-
   height: 100%;
 
-  background: #a688d4;
+  width: 0%;
 
-  transition: width 0.3s;
+  background:
+    linear-gradient(
+      90deg,
+      #c8a7ff,
+      #8f69c7
+    );
 
-}
-
-/* ======================================
-   EMOTIONS
-====================================== */
-
-.emotion-grid {
-
-  display: grid;
-
-  grid-template-columns:
-    repeat(2, 1fr);
-
-  gap: 10px;
+  transition: 0.3s;
 
 }
 
@@ -322,9 +519,9 @@ button.pressed {
   background:
     rgba(255,255,255,0.08);
 
-  padding: 10px 14px;
+  border-radius: 14px;
 
-  border-radius: 12px;
+  padding: 10px 14px;
 
 }
 
@@ -336,13 +533,7 @@ audio {
 
   width: 100%;
 
-  margin-top: 15px;
-
-}
-
-#musicSelector {
-
-  margin-bottom: 10px;
+  margin-top: 18px;
 
 }
 
@@ -354,17 +545,19 @@ audio {
 
   position: fixed;
 
-  bottom: 20px;
+  bottom: 25px;
 
   left: 50%;
 
-  transform: translateX(-50%);
+  transform:
+    translateX(-50%);
 
-  background: #a688d4;
+  background:
+    rgba(28,22,45,0.95);
 
-  padding: 12px 20px;
+  padding: 14px 22px;
 
-  border-radius: 12px;
+  border-radius: 16px;
 
   opacity: 0;
 
@@ -386,7 +579,8 @@ audio {
 
 .fade-in {
 
-  animation: fadeIn 0.6s ease;
+  animation:
+    fadeIn 0.8s ease;
 
 }
 
@@ -396,7 +590,8 @@ audio {
 
     opacity: 0;
 
-    transform: translateY(8px);
+    transform:
+      translateY(10px);
 
   }
 
@@ -404,7 +599,8 @@ audio {
 
     opacity: 1;
 
-    transform: translateY(0);
+    transform:
+      translateY(0);
 
   }
 
@@ -418,7 +614,7 @@ audio {
 
   body {
 
-    padding: 14px;
+    padding: 18px 14px 100px;
 
   }
 
