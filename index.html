@@ -3,7 +3,7 @@
 
 <head>
 
-  <meta charset="UTF-8"/>
+  <meta charset="UTF-8" />
 
   <meta
     name="viewport"
@@ -72,377 +72,453 @@
 
 <body class="earth animated-bg">
 
-  <header class="topbar fade-in">
+  <div class="app-shell">
 
-    <h1>Evidence I Exist</h1>
+    <!-- HERO -->
 
-    <p>Your digital sanctuary ✨</p>
+    <header class="hero fade-in">
 
-  </header>
+      <div class="hero-glow"></div>
 
-  <main>
+      <h1>Evidence I Exist</h1>
 
-    <!-- Theme -->
-
-    <section class="panel fade-in">
-
-      <h2>Theme Customizer</h2>
-
-      <select id="themePicker">
-
-        <option value="earth">
-          Earth Goddess
-        </option>
-
-        <option value="moon">
-          Moon Dream
-        </option>
-
-        <option value="forest">
-          Forest Sanctuary
-        </option>
-
-      </select>
-
-    </section>
-
-    <!-- Daily Quote -->
-
-    <section class="panel fade-in">
-
-      <h2>Daily Reminder</h2>
-
-      <p id="dailyQuote"></p>
-
-    </section>
-
-    <!-- Mood -->
-
-    <section class="panel fade-in">
-
-      <h2>Mood Tracker</h2>
-
-      <select id="mood">
-
-        <option value="">
-          Choose your mood
-        </option>
-
-        <option>Peaceful</option>
-        <option>Overwhelmed</option>
-        <option>Hopeful</option>
-        <option>Disconnected</option>
-        <option>Grounded</option>
-
-      </select>
-
-      <button id="saveMood">
-        Save Mood
-      </button>
-
-    </section>
-
-    <!-- Emotional Wheel -->
-
-    <section class="panel fade-in">
-
-      <h2>Emotional Wheel</h2>
-
-      <div class="emotion-grid">
-
-        <button class="emotion">
-          Hopeful
-        </button>
-
-        <button class="emotion">
-          Anxious
-        </button>
-
-        <button class="emotion">
-          Disconnected
-        </button>
-
-        <button class="emotion">
-          Peaceful
-        </button>
-
-        <button class="emotion">
-          Overwhelmed
-        </button>
-
-        <button class="emotion">
-          Grounded
-        </button>
-
-      </div>
-
-    </section>
-
-    <!-- Water -->
-
-    <section class="panel fade-in">
-
-      <h2>Water Tracker</h2>
-
-      <div class="water-controls">
-
-        <button id="waterMinus">
-          -
-        </button>
-
-        <span id="waterCount">
-          0
-        </span>
-
-        <button id="waterPlus">
-          +
-        </button>
-
-      </div>
-
-    </section>
-
-    <!-- Journal -->
-
-    <section class="panel fade-in">
-
-      <h2>Daily Reflection</h2>
-
-      <textarea
-        id="journal"
-        placeholder="Write your thoughts..."
-      ></textarea>
-
-      <button id="saveJournal">
-        Save Entry
-      </button>
-
-    </section>
-
-    <!-- Voice -->
-
-    <section class="panel fade-in">
-
-      <h2>Voice Journal</h2>
-
-      <button id="recordBtn">
-        Start Recording
-      </button>
-
-      <audio
-        id="voicePlayback"
-        controls
-      ></audio>
-
-    </section>
-
-    <!-- Symptoms -->
-
-    <section class="panel fade-in">
-
-      <h2>Symptom Tracker</h2>
-
-      <textarea
-        id="symptoms"
-        placeholder="Track symptoms..."
-      ></textarea>
-
-      <button id="saveSymptoms">
-        Save Symptoms
-      </button>
-
-    </section>
-
-    <!-- Dreams -->
-
-    <section class="panel fade-in">
-
-      <h2>Dream Journal</h2>
-
-      <textarea
-        id="dreamJournal"
-        placeholder="Record your dreams..."
-      ></textarea>
-
-      <button id="saveDreams">
-        Save Dream
-      </button>
-
-    </section>
-
-    <!-- Oracle -->
-
-    <section class="panel fade-in">
-
-      <h2>Oracle Message</h2>
-
-      <button id="oracleBtn">
-        Reveal Message
-      </button>
-
-      <p id="oracleText"></p>
-
-    </section>
-
-    <!-- Tarot -->
-
-    <section class="panel fade-in">
-
-      <h2>Tarot Guidance</h2>
-
-      <button id="drawTarot">
-        Draw Card
-      </button>
-
-      <p id="tarotResult"></p>
-
-    </section>
-
-    <!-- AI -->
-
-    <section class="panel fade-in">
-
-      <h2>Reflection Prompt</h2>
-
-      <button id="promptBtn">
-        Generate Prompt
-      </button>
-
-      <p id="promptText"></p>
-
-    </section>
-
-    <!-- Quests -->
-
-    <section class="panel fade-in">
-
-      <h2>Main Character Quests</h2>
-
-      <ul id="questList"></ul>
-
-    </section>
-
-    <!-- XP -->
-
-    <section class="panel fade-in">
-
-      <h2>Recovery Level</h2>
-
-      <div class="xp-bar">
-
-        <div id="xpFill"></div>
-
-      </div>
-
-      <p id="xpText">
-        Level 1 — 0 XP
+      <p>
+        Your immersive sanctuary for healing,
+        reflection, recovery, and becoming.
       </p>
 
-      <button id="gainXP">
-        Complete Healing Quest
-      </button>
+    </header>
 
-    </section>
+    <!-- CONTENT -->
 
-    <!-- Badges -->
+    <div class="content-wrap">
 
-    <section class="panel fade-in">
+      <!-- THEME -->
 
-      <h2>Achievements</h2>
+      <section class="panel fade-in">
 
-      <div id="badges"></div>
+        <h2>Theme Customizer</h2>
 
-    </section>
+        <select id="themePicker">
 
-    <!-- Streak -->
+          <option value="earth">
+            Earth Goddess
+          </option>
 
-    <section class="panel fade-in">
+          <option value="moon">
+            Moon Dream
+          </option>
 
-      <h2>Recovery Streak</h2>
+          <option value="forest">
+            Forest Sanctuary
+          </option>
 
-      <p id="streakText">
-        1 Day Streak
-      </p>
+        </select>
 
-    </section>
+      </section>
 
-    <!-- Ritual -->
+      <!-- DAILY QUOTE -->
 
-    <section class="panel fade-in">
+      <section class="panel fade-in">
 
-      <h2>Bedtime Rituals</h2>
+        <h2>Daily Reminder</h2>
 
-      <ul class="ritual-list">
+        <p id="dailyQuote"></p>
 
-        <li>✨ Stretch</li>
-        <li>🌙 Drink water</li>
-        <li>📖 Journal</li>
-        <li>🕯️ Breathe deeply</li>
+      </section>
 
-      </ul>
+      <!-- BREATHING -->
 
-    </section>
+      <section class="panel fade-in">
 
-    <!-- Music -->
+        <h2>Breathing Sanctuary</h2>
 
-    <section class="panel fade-in">
+        <div class="breathing-container">
 
-      <h2>Sanctuary Sounds</h2>
+          <div id="breathCircle"></div>
 
-      <label>
-        Choose Your Atmosphere
-      </label>
+        </div>
 
-      <select id="musicSelector">
+        <p id="breathText">
+          Inhale...
+        </p>
 
-        <option value="assets/music/chrysalis.mp3">
-          Chrysalis
-        </option>
+      </section>
 
-        <option value="assets/music/jazzy-love.mp3">
-          Jazzy Love
-        </option>
+      <!-- VIRTUAL ROOM -->
 
-        <option value="assets/music/study-lofi.mp3">
-          Study Lofi
-        </option>
+      <section class="panel fade-in">
 
-        <option value="assets/music/lofi-girl.mp3">
-          Lofi Girl
-        </option>
+        <h2>Virtual Sanctuary Room</h2>
 
-        <option value="assets/music/dreamscape.mp3">
-          Dreamscape
-        </option>
+        <div id="room">
 
-      </select>
+          <div class="room-item">
+            🕯️ Candle
+          </div>
 
-      <audio
-        id="musicPlayer"
-        controls
-        loop
-      >
+          <div class="room-item">
+            🌿 Plants
+          </div>
 
-        <source
-          src="assets/music/chrysalis.mp3"
-          type="audio/mpeg"
-        />
+          <div class="room-item">
+            📚 Books
+          </div>
 
-      </audio>
+          <div class="room-item">
+            ☁️ Cloud Bed
+          </div>
 
-    </section>
+          <div class="room-item">
+            🌙 Moon Window
+          </div>
 
-    <!-- Reset -->
+          <div class="room-item">
+            ✨ Crystal Corner
+          </div>
 
-    <section class="panel fade-in">
+        </div>
 
-      <button id="resetApp">
-        Reset Sanctuary
-      </button>
+      </section>
 
-    </section>
+      <!-- STRETCHES -->
 
-  </main>
+      <section class="panel fade-in">
+
+        <h2>Gentle Bed Stretches</h2>
+
+        <div class="stretch-grid">
+
+          <div class="stretch-card">
+            🌙 Child’s Pose
+          </div>
+
+          <div class="stretch-card">
+            ✨ Cat-Cow Stretch
+          </div>
+
+          <div class="stretch-card">
+            🌿 Spinal Twist
+          </div>
+
+          <div class="stretch-card">
+            💫 Neck Rolls
+          </div>
+
+          <div class="stretch-card">
+            ☁️ Hip Stretch
+          </div>
+
+          <div class="stretch-card">
+            🌸 Butterfly Stretch
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- MOOD -->
+
+      <section class="panel fade-in">
+
+        <h2>Mood Tracker</h2>
+
+        <select id="mood">
+
+          <option value="">
+            Choose your mood
+          </option>
+
+          <option>Peaceful</option>
+          <option>Overwhelmed</option>
+          <option>Hopeful</option>
+          <option>Disconnected</option>
+          <option>Grounded</option>
+
+        </select>
+
+        <button id="saveMood">
+          Save Mood
+        </button>
+
+      </section>
+
+      <!-- EMOTIONS -->
+
+      <section class="panel fade-in">
+
+        <h2>Emotional Wheel</h2>
+
+        <div class="emotion-grid">
+
+          <button class="emotion">
+            Hopeful
+          </button>
+
+          <button class="emotion">
+            Anxious
+          </button>
+
+          <button class="emotion">
+            Disconnected
+          </button>
+
+          <button class="emotion">
+            Peaceful
+          </button>
+
+          <button class="emotion">
+            Overwhelmed
+          </button>
+
+          <button class="emotion">
+            Grounded
+          </button>
+
+        </div>
+
+      </section>
+
+      <!-- WATER -->
+
+      <section class="panel fade-in">
+
+        <h2>Water Tracker</h2>
+
+        <div class="water-controls">
+
+          <button id="waterMinus">
+            -
+          </button>
+
+          <span id="waterCount">
+            0
+          </span>
+
+          <button id="waterPlus">
+            +
+          </button>
+
+        </div>
+
+      </section>
+
+      <!-- JOURNAL -->
+
+      <section class="panel fade-in">
+
+        <h2>Daily Reflection</h2>
+
+        <textarea
+          id="journal"
+          placeholder="Write your thoughts..."
+        ></textarea>
+
+        <button id="saveJournal">
+          Save Entry
+        </button>
+
+      </section>
+
+      <!-- DREAM JOURNAL -->
+
+      <section class="panel fade-in">
+
+        <h2>Dream Journal</h2>
+
+        <textarea
+          id="dreamJournal"
+          placeholder="Record your dreams..."
+        ></textarea>
+
+        <button id="saveDreams">
+          Save Dream
+        </button>
+
+      </section>
+
+      <!-- SYMPTOMS -->
+
+      <section class="panel fade-in">
+
+        <h2>Symptom Tracker</h2>
+
+        <textarea
+          id="symptoms"
+          placeholder="Track symptoms..."
+        ></textarea>
+
+        <button id="saveSymptoms">
+          Save Symptoms
+        </button>
+
+      </section>
+
+      <!-- VOICE -->
+
+      <section class="panel fade-in">
+
+        <h2>Voice Journal</h2>
+
+        <button id="recordBtn">
+          Start Recording
+        </button>
+
+        <audio
+          id="voicePlayback"
+          controls
+        ></audio>
+
+      </section>
+
+      <!-- ORACLE -->
+
+      <section class="panel fade-in">
+
+        <h2>Oracle Message</h2>
+
+        <button id="oracleBtn">
+          Reveal Message
+        </button>
+
+        <p id="oracleText"></p>
+
+      </section>
+
+      <!-- TAROT -->
+
+      <section class="panel fade-in">
+
+        <h2>Tarot Guidance</h2>
+
+        <button id="drawTarot">
+          Draw Card
+        </button>
+
+        <p id="tarotResult"></p>
+
+      </section>
+
+      <!-- PROMPTS -->
+
+      <section class="panel fade-in">
+
+        <h2>Reflection Prompt</h2>
+
+        <button id="promptBtn">
+          Generate Prompt
+        </button>
+
+        <p id="promptText"></p>
+
+      </section>
+
+      <!-- XP -->
+
+      <section class="panel fade-in">
+
+        <h2>Recovery Level</h2>
+
+        <div class="xp-bar">
+
+          <div id="xpFill"></div>
+
+        </div>
+
+        <p id="xpText">
+          Level 1 — 0 XP
+        </p>
+
+        <button id="gainXP">
+          Complete Healing Quest
+        </button>
+
+      </section>
+
+      <!-- BADGES -->
+
+      <section class="panel fade-in">
+
+        <h2>Achievements</h2>
+
+        <div id="badges"></div>
+
+      </section>
+
+      <!-- STREAK -->
+
+      <section class="panel fade-in">
+
+        <h2>Recovery Streak</h2>
+
+        <p id="streakText">
+          1 Day Streak
+        </p>
+
+      </section>
+
+      <!-- MUSIC -->
+
+      <section class="panel fade-in">
+
+        <h2>Sanctuary Sounds</h2>
+
+        <label>
+          Choose Your Atmosphere
+        </label>
+
+        <select id="musicSelector">
+
+          <option value="assets/music/chrysalis.mp3">
+            Chrysalis
+          </option>
+
+          <option value="assets/music/jazzy-love.mp3">
+            Jazzy Love
+          </option>
+
+          <option value="assets/music/study-lofi.mp3">
+            Study Lofi
+          </option>
+
+          <option value="assets/music/lofi-girl.mp3">
+            Lofi Girl
+          </option>
+
+          <option value="assets/music/dreamscape.mp3">
+            Dreamscape
+          </option>
+
+        </select>
+
+        <audio
+          id="musicPlayer"
+          controls
+          loop
+        >
+
+          <source
+            src="assets/music/chrysalis.mp3"
+            type="audio/mpeg"
+          />
+
+        </audio>
+
+      </section>
+
+      <!-- RESET -->
+
+      <section class="panel fade-in">
+
+        <button id="resetApp">
+          Reset Sanctuary
+        </button>
+
+      </section>
+
+    </div>
+
+  </div>
 
   <div id="toast"></div>
 
