@@ -32,6 +32,30 @@ body {
 }
 
 /* ======================================
+   APP LAYOUT
+====================================== */
+
+.app-shell {
+
+  width: 100%;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+}
+
+.content-wrap {
+
+  width: 100%;
+
+  max-width: 720px;
+
+}
+
+/* ======================================
    THEMES
 ====================================== */
 
@@ -116,35 +140,91 @@ body::before {
 }
 
 /* ======================================
-   HEADER
+   HERO
 ====================================== */
 
-.topbar {
+.hero {
+
+  position: relative;
 
   text-align: center;
 
-  margin-bottom: 35px;
+  margin-bottom: 40px;
+
+  padding: 50px 25px;
+
+  width: 100%;
+
+  max-width: 720px;
+
+  border-radius: 32px;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,0.08),
+      rgba(255,255,255,0.03)
+    );
+
+  backdrop-filter: blur(20px);
+
+  border:
+    1px solid rgba(255,255,255,0.08);
+
+  box-shadow:
+    0 20px 45px rgba(0,0,0,0.28);
 
 }
 
-.topbar h1 {
+.hero-glow {
 
-  font-size: 2.7rem;
+  position: absolute;
 
-  color: #ead8ff;
+  width: 300px;
 
-  margin-bottom: 10px;
+  height: 300px;
 
-  text-shadow:
-    0 0 20px rgba(212,170,255,0.25);
+  background:
+    radial-gradient(
+      circle,
+      rgba(200,170,255,0.25),
+      transparent 70%
+    );
+
+  top: -80px;
+
+  left: 50%;
+
+  transform:
+    translateX(-50%);
 
 }
 
-.topbar p {
+.hero h1 {
 
-  opacity: 0.82;
+  font-size: 3rem;
 
-  font-size: 1rem;
+  margin-bottom: 18px;
+
+  color: #f2e4ff;
+
+  position: relative;
+
+  z-index: 1;
+
+}
+
+.hero p {
+
+  opacity: 0.85;
+
+  line-height: 1.7;
+
+  position: relative;
+
+  z-index: 1;
 
 }
 
@@ -178,32 +258,11 @@ body::before {
 
 }
 
-.panel::before {
-
-  content: '';
-
-  position: absolute;
-
-  inset: 0;
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255,255,255,0.06),
-      transparent
-    );
-
-  pointer-events: none;
-
-}
-
 .panel h2 {
 
   margin-bottom: 18px;
 
   color: #e5cfff;
-
-  font-size: 1.2rem;
 
 }
 
@@ -277,41 +336,6 @@ button:hover {
 
 }
 
-button:active {
-
-  transform:
-    scale(0.97);
-
-}
-
-/* ======================================
-   WATER TRACKER
-====================================== */
-
-.water-controls {
-
-  display: flex;
-
-  justify-content: center;
-
-  align-items: center;
-
-  gap: 25px;
-
-}
-
-.water-controls button {
-
-  width: 60px;
-
-}
-
-#waterCount {
-
-  font-size: 2rem;
-
-}
-
 /* ======================================
    BREATHING
 ====================================== */
@@ -380,6 +404,34 @@ button:active {
 }
 
 /* ======================================
+   ROOM
+====================================== */
+
+#room {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, 1fr);
+
+  gap: 14px;
+
+}
+
+.room-item {
+
+  background:
+    rgba(255,255,255,0.08);
+
+  border-radius: 20px;
+
+  padding: 20px;
+
+  text-align: center;
+
+}
+
+/* ======================================
    STRETCHES
 ====================================== */
 
@@ -408,42 +460,30 @@ button:active {
 }
 
 /* ======================================
-   VIRTUAL ROOM
+   WATER
 ====================================== */
 
-#room {
+.water-controls {
 
-  display: grid;
+  display: flex;
 
-  grid-template-columns:
-    repeat(2, 1fr);
+  justify-content: center;
 
-  gap: 14px;
+  align-items: center;
 
-}
-
-.room-item {
-
-  background:
-    rgba(255,255,255,0.08);
-
-  border-radius: 20px;
-
-  padding: 20px;
-
-  text-align: center;
-
-  transition: 0.25s;
+  gap: 25px;
 
 }
 
-.room-item:hover {
+.water-controls button {
 
-  transform:
-    scale(1.04);
+  width: 60px;
 
-  background:
-    rgba(255,255,255,0.12);
+}
+
+#waterCount {
+
+  font-size: 2rem;
 
 }
 
@@ -463,7 +503,7 @@ button:active {
 }
 
 /* ======================================
-   XP BAR
+   XP
 ====================================== */
 
 .xp-bar {
@@ -495,8 +535,6 @@ button:active {
       #c8a7ff,
       #8f69c7
     );
-
-  transition: 0.3s;
 
 }
 
@@ -601,20 +639,6 @@ audio {
 
     transform:
       translateY(0);
-
-  }
-
-}
-
-/* ======================================
-   MOBILE
-====================================== */
-
-@media (max-width: 700px) {
-
-  body {
-
-    padding: 18px 14px 100px;
 
   }
 
