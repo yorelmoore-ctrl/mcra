@@ -1,17 +1,12 @@
 /* ======================================
-   EVIDENCE I EXIST
-   IMMERSIVE SANCTUARY VERSION
+   RESET
 ====================================== */
 
 * {
+
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-html {
-
-  scroll-behavior: smooth;
 
 }
 
@@ -21,18 +16,24 @@ body {
 
   min-height: 100vh;
 
+  background:
+    linear-gradient(
+      180deg,
+      #0d0b14 0%,
+      #171323 30%,
+      #231d36 100%
+    );
+
   color: #f4efff;
 
   overflow-x: hidden;
 
-  padding: 30px 18px 120px;
-
-  transition: 0.5s;
+  padding: 30px 20px 100px;
 
 }
 
 /* ======================================
-   APP LAYOUT
+   APP SHELL
 ====================================== */
 
 .app-shell {
@@ -47,98 +48,6 @@ body {
 
 }
 
-.content-wrap {
-
-  width: 100%;
-
-  max-width: 720px;
-
-}
-
-/* ======================================
-   THEMES
-====================================== */
-
-body.earth {
-
-  background:
-    linear-gradient(
-      180deg,
-      #0d0b14 0%,
-      #171323 30%,
-      #231d36 100%
-    );
-
-}
-
-body.moon {
-
-  background:
-    linear-gradient(
-      180deg,
-      #111827 0%,
-      #1e1b4b 50%,
-      #312e81 100%
-    );
-
-}
-
-body.forest {
-
-  background:
-    linear-gradient(
-      180deg,
-      #081c15 0%,
-      #1b4332 45%,
-      #2d6a4f 100%
-    );
-
-}
-
-/* ======================================
-   DREAMY BACKGROUND
-====================================== */
-
-body::before {
-
-  content: '';
-
-  position: fixed;
-
-  inset: 0;
-
-  background:
-    radial-gradient(
-      circle at top,
-      rgba(255,255,255,0.10),
-      transparent 60%
-    );
-
-  pointer-events: none;
-
-  animation:
-    floatGlow 10s infinite alternate;
-
-}
-
-@keyframes floatGlow {
-
-  from {
-
-    transform:
-      translateY(0px);
-
-  }
-
-  to {
-
-    transform:
-      translateY(-25px);
-
-  }
-
-}
-
 /* ======================================
    HERO
 ====================================== */
@@ -147,34 +56,27 @@ body::before {
 
   position: relative;
 
-  text-align: center;
+  width: 100%;
 
-  margin-bottom: 40px;
+  max-width: 1300px;
+
+  text-align: center;
 
   padding: 50px 25px;
 
-  width: 100%;
-
-  max-width: 720px;
-
   border-radius: 32px;
+
+  margin-bottom: 25px;
 
   overflow: hidden;
 
   background:
-    linear-gradient(
-      135deg,
-      rgba(255,255,255,0.08),
-      rgba(255,255,255,0.03)
-    );
+    rgba(255,255,255,0.06);
 
   backdrop-filter: blur(20px);
 
   border:
     1px solid rgba(255,255,255,0.08);
-
-  box-shadow:
-    0 20px 45px rgba(0,0,0,0.28);
 
 }
 
@@ -182,9 +84,9 @@ body::before {
 
   position: absolute;
 
-  width: 300px;
+  width: 320px;
 
-  height: 300px;
+  height: 320px;
 
   background:
     radial-gradient(
@@ -193,7 +95,7 @@ body::before {
       transparent 70%
     );
 
-  top: -80px;
+  top: -100px;
 
   left: 50%;
 
@@ -206,9 +108,7 @@ body::before {
 
   font-size: 3rem;
 
-  margin-bottom: 18px;
-
-  color: #f2e4ff;
+  margin-bottom: 15px;
 
   position: relative;
 
@@ -218,9 +118,7 @@ body::before {
 
 .hero p {
 
-  opacity: 0.85;
-
-  line-height: 1.7;
+  opacity: 0.8;
 
   position: relative;
 
@@ -229,12 +127,110 @@ body::before {
 }
 
 /* ======================================
+   APP LAYOUT
+====================================== */
+
+.app-layout {
+
+  display: flex;
+
+  gap: 20px;
+
+  width: 100%;
+
+  max-width: 1300px;
+
+}
+
+/* ======================================
+   SIDEBAR
+====================================== */
+
+.sidebar {
+
+  width: 220px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 12px;
+
+  position: sticky;
+
+  top: 20px;
+
+  height: fit-content;
+
+}
+
+.nav-btn {
+
+  background:
+    rgba(255,255,255,0.08);
+
+  border:
+    1px solid rgba(255,255,255,0.06);
+
+  border-radius: 18px;
+
+  padding: 15px;
+
+  color: white;
+
+  cursor: pointer;
+
+  text-align: left;
+
+  transition: 0.25s;
+
+}
+
+.nav-btn:hover {
+
+  transform:
+    translateY(-2px);
+
+}
+
+.nav-btn.active {
+
+  background:
+    linear-gradient(
+      135deg,
+      #a688d4,
+      #7c5db0
+    );
+
+}
+
+/* ======================================
+   TAB CONTENT
+====================================== */
+
+.tab-content {
+
+  flex: 1;
+
+}
+
+.tab-panel {
+
+  display: none;
+
+}
+
+.tab-panel.active {
+
+  display: block;
+
+}
+
+/* ======================================
    PANELS
 ====================================== */
 
 .panel {
-
-  position: relative;
 
   background:
     rgba(255,255,255,0.07);
@@ -249,12 +245,6 @@ body::before {
   padding: 24px;
 
   margin-bottom: 24px;
-
-  overflow: hidden;
-
-  box-shadow:
-    0 10px 35px rgba(0,0,0,0.25),
-    0 0 25px rgba(166,136,212,0.08);
 
 }
 
@@ -272,8 +262,7 @@ body::before {
 
 button,
 textarea,
-select,
-input {
+select {
 
   width: 100%;
 
@@ -283,25 +272,14 @@ input {
 
   padding: 15px;
 
-  font-size: 16px;
+  margin-top: 10px;
 
   font-family: inherit;
 
-  margin-top: 10px;
-
 }
 
-textarea {
-
-  min-height: 130px;
-
-  resize: vertical;
-
-}
-
-select,
 textarea,
-input {
+select {
 
   background:
     rgba(255,255,255,0.08);
@@ -321,18 +299,13 @@ button {
 
   color: white;
 
-  font-weight: 600;
-
   cursor: pointer;
-
-  transition: 0.25s;
 
 }
 
-button:hover {
+textarea {
 
-  transform:
-    translateY(-2px);
+  min-height: 140px;
 
 }
 
@@ -346,7 +319,7 @@ button:hover {
 
   justify-content: center;
 
-  margin: 25px 0;
+  margin: 20px 0;
 
 }
 
@@ -364,9 +337,6 @@ button:hover {
       #d7bbff,
       #8b6ac0
     );
-
-  box-shadow:
-    0 0 45px rgba(203,170,255,0.35);
 
   animation:
     breathe 8s infinite ease-in-out;
@@ -399,8 +369,6 @@ button:hover {
 
   text-align: center;
 
-  margin-top: 15px;
-
 }
 
 /* ======================================
@@ -432,30 +400,17 @@ button:hover {
 }
 
 /* ======================================
-   STRETCHES
+   EMOTIONS
 ====================================== */
 
-.stretch-grid {
+.emotion-grid {
 
   display: grid;
 
   grid-template-columns:
     repeat(2, 1fr);
 
-  gap: 12px;
-
-}
-
-.stretch-card {
-
-  background:
-    rgba(255,255,255,0.08);
-
-  border-radius: 18px;
-
-  padding: 18px;
-
-  text-align: center;
+  gap: 10px;
 
 }
 
@@ -488,21 +443,6 @@ button:hover {
 }
 
 /* ======================================
-   EMOTIONS
-====================================== */
-
-.emotion-grid {
-
-  display: grid;
-
-  grid-template-columns:
-    repeat(2, 1fr);
-
-  gap: 10px;
-
-}
-
-/* ======================================
    XP
 ====================================== */
 
@@ -525,9 +465,9 @@ button:hover {
 
 #xpFill {
 
-  height: 100%;
-
   width: 0%;
+
+  height: 100%;
 
   background:
     linear-gradient(
@@ -539,106 +479,65 @@ button:hover {
 }
 
 /* ======================================
-   BADGES
+   ARCHIVE
 ====================================== */
 
-#badges {
+.archive-sub {
+
+  opacity: 0.7;
+
+  margin-bottom: 18px;
+
+}
+
+#archiveContainer {
 
   display: flex;
 
-  flex-wrap: wrap;
+  flex-direction: column;
 
-  gap: 10px;
+  gap: 16px;
 
 }
 
-.badge {
+.archive-card {
 
   background:
-    rgba(255,255,255,0.08);
+    rgba(255,255,255,0.06);
 
-  border-radius: 14px;
+  border-radius: 20px;
 
-  padding: 10px 14px;
-
-}
-
-/* ======================================
-   AUDIO
-====================================== */
-
-audio {
-
-  width: 100%;
-
-  margin-top: 18px;
+  padding: 18px;
 
 }
 
 /* ======================================
-   TOAST
+   MOBILE
 ====================================== */
 
-#toast {
+@media (max-width: 900px) {
 
-  position: fixed;
+  .app-layout {
 
-  bottom: 25px;
-
-  left: 50%;
-
-  transform:
-    translateX(-50%);
-
-  background:
-    rgba(28,22,45,0.95);
-
-  padding: 14px 22px;
-
-  border-radius: 16px;
-
-  opacity: 0;
-
-  transition: 0.3s;
-
-  z-index: 999;
-
-}
-
-#toast.show {
-
-  opacity: 1;
-
-}
-
-/* ======================================
-   FADE
-====================================== */
-
-.fade-in {
-
-  animation:
-    fadeIn 0.8s ease;
-
-}
-
-@keyframes fadeIn {
-
-  from {
-
-    opacity: 0;
-
-    transform:
-      translateY(10px);
+    flex-direction: column;
 
   }
 
-  to {
+  .sidebar {
 
-    opacity: 1;
+    width: 100%;
 
-    transform:
-      translateY(0);
+    flex-direction: row;
+
+    overflow-x: auto;
+
+    position: relative;
+
+  }
+
+  .nav-btn {
+
+    min-width: 140px;
 
   }
 
