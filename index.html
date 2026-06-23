@@ -7,27 +7,17 @@
 
   <link rel="stylesheet" href="style.css"/>
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#a688d4">
+  <meta name="theme-color" content="#c3a4ff">
 
   <script defer src="script.js"></script>
 </head>
 
 <body>
 
-<!-- 🌌 BACKGROUND -->
 <canvas id="stars"></canvas>
 <div class="moon"></div>
 
 <div class="app">
-
-  <!-- 🌙 EMOJI SIDEBAR -->
-  <aside class="sidebar">
-    <button class="tab active" data-tab="home">🏠</button>
-    <button class="tab" data-tab="journal">📖</button>
-    <button class="tab" data-tab="archive">📚</button>
-    <button class="tab" data-tab="room">🌙</button>
-    <button class="tab" data-tab="stats">📊</button>
-  </aside>
 
   <main class="main">
 
@@ -46,18 +36,14 @@
         <p id="streakDisplay"></p>
       </div>
 
-      <div class="card">
-        <button id="soundToggle">🌙 Ambient Sound</button>
-      </div>
-
     </section>
 
-    <!-- JOURNAL (BOOK ENTRY) -->
+    <!-- JOURNAL -->
     <section class="section" data-section="journal">
 
       <div id="journalCover" class="book">
-        <h2>📖 Journal of Self</h2>
-        <p>A private space for your thoughts</p>
+        <h2>📖 Journal</h2>
+        <p>Your private space</p>
         <button id="openJournal">Open Journal</button>
       </div>
 
@@ -76,17 +62,15 @@
 
     <!-- ROOM -->
     <section class="section" data-section="room">
-
       <h1>Room</h1>
 
       <div class="room">
-        <div class="item" data-mood="calm">🛏️ Bed</div>
-        <div class="item" data-mood="soft">🪞 Mirror</div>
-        <div class="item" data-mood="bright">🌙 Light</div>
+        <div class="item" data-mood="sunset">🌅 Sunset</div>
+        <div class="item" data-mood="dusk">🌙 Dusk</div>
+        <div class="item" data-mood="dream">✨ Dream</div>
       </div>
 
       <p id="roomText"></p>
-
     </section>
 
     <!-- STATS -->
@@ -108,6 +92,15 @@
   </main>
 
 </div>
+
+<!-- 🌙 BOTTOM NAV -->
+<nav class="bottom-nav">
+  <button class="tab active" data-tab="home">🏠</button>
+  <button class="tab" data-tab="journal">📖</button>
+  <button class="tab" data-tab="archive">📚</button>
+  <button class="tab" data-tab="room">🌙</button>
+  <button class="tab" data-tab="stats">📊</button>
+</nav>
 
 </body>
 </html>
