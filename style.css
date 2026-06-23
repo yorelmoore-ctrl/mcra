@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap');
-
 * {
   margin: 0;
   padding: 0;
@@ -8,73 +6,68 @@
 }
 
 body {
-  color: white;
-  min-height: 100vh;
   overflow: hidden;
+  color: white;
+  height: 100vh;
 
-  background: radial-gradient(circle at top, #3a1b6a, #120a24, #07040f);
+  background: linear-gradient(-45deg,
+    #ff9a9e,
+    #fad0c4,
+    #a18cd1,
+    #2a1455,
+    #120018
+  );
+
+  background-size: 400% 400%;
+  animation: sky 16s ease infinite;
 }
 
-/* STARS */
-body::before {
-  content: "";
+@keyframes sky {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* 🌌 STAR CANVAS */
+#stars {
   position: fixed;
   inset: 0;
-
-  background-image:
-    radial-gradient(2px 2px at 10% 20%, white, transparent),
-    radial-gradient(1px 1px at 30% 80%, white, transparent),
-    radial-gradient(2px 2px at 70% 40%, white, transparent),
-    radial-gradient(1px 1px at 90% 10%, white, transparent),
-    radial-gradient(1px 1px at 50% 60%, white, transparent);
-
-  opacity: 0.5;
-  animation: floatStars 8s infinite alternate;
-  pointer-events: none;
+  z-index: 0;
 }
 
-@keyframes floatStars {
-  from { transform: translateY(0px); opacity: 0.4; }
-  to { transform: translateY(-10px); opacity: 0.8; }
+/* 🌙 MOON */
+.moon {
+  position: fixed;
+  top: 10%;
+  right: 8%;
+  width: 95px;
+  height: 95px;
+
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff, #c3a4ff, #7a5cff);
+  box-shadow: 0 0 35px rgba(195,164,255,0.6);
+
+  animation: float 5s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
 }
 
 /* APP */
 .app {
-  display: flex;
   height: 100vh;
-}
-
-/* SIDEBAR */
-.sidebar {
-  width: 200px;
-  padding: 20px;
-
-  background: rgba(255,255,255,0.05);
-  backdrop-filter: blur(12px);
-}
-
-.tab {
-  width: 100%;
-  margin: 8px 0;
-  padding: 12px;
-
-  border: none;
-  border-radius: 14px;
-
-  background: rgba(255,255,255,0.08);
-  color: white;
-
-  cursor: pointer;
-}
-
-.tab.active {
-  background: #a688d4;
+  position: relative;
+  z-index: 2;
 }
 
 /* MAIN */
 .main {
-  flex: 1;
+  height: 100%;
   padding: 20px;
+  padding-bottom: 80px;
   overflow-y: auto;
 }
 
@@ -83,10 +76,18 @@ body::before {
 
 /* CARDS */
 .card {
-  background: rgba(255,255,255,0.07);
+  background: rgba(255,255,255,0.08);
   padding: 15px;
   border-radius: 16px;
-  margin: 12px 0;
+  margin: 10px 0;
+}
+
+/* BOOK */
+.book {
+  background: rgba(255,255,255,0.1);
+  padding: 30px;
+  border-radius: 18px;
+  text-align: center;
 }
 
 /* TEXTAREA */
@@ -94,21 +95,20 @@ textarea {
   width: 100%;
   height: 140px;
   border-radius: 12px;
-  padding: 10px;
   border: none;
-  background: rgba(255,255,255,0.08);
+  padding: 10px;
+  background: rgba(255,255,255,0.1);
   color: white;
 }
 
-/* BUTTONS */
+/* BUTTON */
 button {
   margin-top: 10px;
   padding: 10px 14px;
-  border: none;
   border-radius: 12px;
-  background: #a688d4;
+  border: none;
+  background: #c3a4ff;
   color: white;
-  cursor: pointer;
 }
 
 /* ROOM */
@@ -121,7 +121,38 @@ button {
   flex: 1;
   padding: 15px;
   border-radius: 14px;
-  background: rgba(255,255,255,0.07);
+  background: rgba(255,255,255,0.08);
   text-align: center;
-  cursor: pointer;
+}
+
+/* 🌙 BOTTOM NAV */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  display: flex;
+  justify-content: space-around;
+
+  padding: 10px;
+
+  background: rgba(20,10,40,0.7);
+  backdrop-filter: blur(12px);
+}
+
+.tab {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+
+  border: none;
+  background: rgba(255,255,255,0.1);
+  color: white;
+
+  font-size: 18px;
+}
+
+.tab.active {
+  background: #c3a4ff;
 }
