@@ -1,20 +1,23 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  /* TAB SYSTEM */
+  /* NAVIGATION */
   const tabs = document.querySelectorAll(".tab");
   const sections = document.querySelectorAll(".section");
 
   tabs.forEach(tab => {
     tab.addEventListener("click", () => {
+
       tabs.forEach(t => t.classList.remove("active"));
       sections.forEach(s => s.classList.remove("active"));
 
       tab.classList.add("active");
-      document.querySelector(`[data-section="${tab.dataset.tab}"]`).classList.add("active");
+
+      document.querySelector(`[data-section="${tab.dataset.tab}"]`)
+        .classList.add("active");
     });
   });
 
-  /* JOURNAL BOOK */
+  /* JOURNAL OPEN */
   const cover = document.getElementById("journalCover");
   const write = document.getElementById("journalWrite");
 
@@ -23,20 +26,21 @@ document.addEventListener("DOMContentLoaded", () => {
     write.classList.remove("hidden");
   });
 
-  /* AI PROMPTS */
+  /* REFLECTIONS */
   const prompts = [
-    "What do I need emotionally today?",
+    "What do I need today?",
     "What am I avoiding?",
-    "Where did I survive something hard?",
-    "What would softness look like?",
-    "What part of me needs care?"
+    "Where did I survive today?",
+    "What deserves my attention?",
+    "What would feel soft right now?"
   ];
 
-  const aiPrompt = document.getElementById("aiPrompt");
-  document.getElementById("newPrompt").addEventListener("click", () => {
-    aiPrompt.textContent = prompts[Math.floor(Math.random() * prompts.length)];
-  });
-  aiPrompt.textContent = prompts[0];
+  const ai = document.getElementById("aiPrompt");
+  document.getElementById("newPrompt").onclick = () => {
+    ai.textContent = prompts[Math.floor(Math.random() * prompts.length)];
+  };
+
+  ai.textContent = prompts[0];
 
   /* STREAK */
   let streak = parseInt(localStorage.getItem("streak") || "0");
@@ -48,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
     display.textContent = `Streak: ${streak}`;
   }
 
-  document.getElementById("streakBtn").addEventListener("click", () => {
+  document.getElementById("streakBtn").onclick = () => {
     const today = new Date().toDateString();
 
     if (last !== today) {
@@ -59,17 +63,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     update();
-  });
+  };
 
   update();
 
   /* JOURNAL SAVE */
   const entry = document.getElementById("entry");
-  const archive = document.getElementById("archiveList");
 
   let entries = JSON.parse(localStorage.getItem("entries") || "[]");
 
-  document.getElementById("saveEntry").addEventListener("click", () => {
+  document.getElementById("saveEntry").onclick = () => {
     entries.push({
       text: entry.value,
       date: new Date().toLocaleString()
@@ -77,41 +80,41 @@ document.addEventListener("DOMContentLoaded", () => {
 
     localStorage.setItem("entries", JSON.stringify(entries));
     entry.value = "";
-  });
+  };
 
   /* ROOM */
   const roomText = document.getElementById("roomText");
 
   document.querySelectorAll(".item").forEach(i => {
-    i.addEventListener("click", () => {
+    i.onclick = () => {
       roomText.textContent = `Mood: ${i.dataset.mood}`;
-    });
+    };
   });
 
   /* STARFIELD */
   const canvas = document.getElementById("stars");
   const ctx = canvas.getContext("2d");
 
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
+  canvas.width = innerWidth;
+  canvas.height = innerHeight;
 
-  const stars = Array.from({ length: 120 }, () => ({
+  const stars = Array.from({ length: 100 }, () => ({
     x: Math.random() * canvas.width,
     y: Math.random() * canvas.height,
     r: Math.random() * 1.5
   }));
 
   function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0,0,canvas.width,canvas.height);
     ctx.fillStyle = "white";
 
     stars.forEach(s => {
       ctx.beginPath();
-      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
       ctx.fill();
 
-      s.y -= 0.2;
-      if (s.y < 0) s.y = canvas.height;
+      s.y += 0.2;
+      if (s.y > canvas.height) s.y = 0;
     });
 
     requestAnimationFrame(animate);
