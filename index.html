@@ -3,74 +3,95 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MCRA Journal</title>
+  <title>MCRA System</title>
 
   <link rel="stylesheet" href="style.css"/>
+  <link rel="manifest" href="manifest.json">
+
   <script defer src="script.js"></script>
 </head>
 
 <body>
 
-  <div class="app">
+<div class="app">
 
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
-      <h2 class="logo">MCRA</h2>
+  <aside class="sidebar">
+    <h2 class="logo">MCRA</h2>
 
-      <button class="tab active" data-tab="home">Home</button>
-      <button class="tab" data-tab="archive">Archive</button>
-      <button class="tab" data-tab="room">Virtual Room</button>
-      <button class="tab" data-tab="stats">Stats</button>
-    </aside>
+    <button class="tab active" data-tab="home">Home</button>
+    <button class="tab" data-tab="journal">Journal</button>
+    <button class="tab" data-tab="archive">Archive</button>
+    <button class="tab" data-tab="room">Room</button>
+    <button class="tab" data-tab="stats">Stats</button>
+  </aside>
 
-    <!-- MAIN CONTENT -->
-    <main class="main">
+  <main class="main">
 
-      <!-- HOME -->
-      <section class="section active" data-section="home">
-        <h1>Welcome Back</h1>
-        <p>Your recovery arc continues here.</p>
-      </section>
+    <!-- HOME -->
+    <section class="section active" data-section="home">
+      <h1>Welcome Back</h1>
 
-      <!-- ARCHIVE -->
-      <section class="section" data-section="archive">
-        <h1>Archive</h1>
-        <p>Saved entries will appear here.</p>
-      </section>
+      <div class="card">
+        <p id="aiPrompt">Your reflection will appear here.</p>
+        <button id="newPrompt">New Check-in</button>
+      </div>
 
-      <!-- VIRTUAL ROOM -->
-      <section class="section" data-section="room">
-        <h1>Virtual Room</h1>
-        <div class="room">
-          <div class="item">🛏️ Bed</div>
-          <div class="item">🪞 Mirror</div>
-          <div class="item">🌙 Mood Light</div>
-        </div>
-      </section>
+      <button id="streakBtn">Log Today</button>
+      <p id="streakDisplay"></p>
+    </section>
 
-      <!-- STATS -->
-      <section class="section" data-section="stats">
-        <h1>Recovery Stats</h1>
+    <!-- JOURNAL -->
+    <section class="section" data-section="journal">
+      <h1>Journal</h1>
 
-        <div class="stat">
-          Energy
-          <input type="range" min="0" max="100" value="50">
-        </div>
+      <div id="lockScreen" class="card">
+        <p>Enter passcode to unlock</p>
+        <input type="password" id="passcodeInput">
+        <button id="unlockBtn">Unlock</button>
+      </div>
 
-        <div class="stat">
-          Emotional HP
-          <input type="range" min="0" max="100" value="70">
-        </div>
+      <div id="journalArea" class="hidden">
+        <textarea id="entry"></textarea>
+        <button id="saveEntry">Save</button>
+      </div>
+    </section>
 
-        <div class="stat">
-          Social Battery
-          <input type="range" min="0" max="100" value="40">
-        </div>
-      </section>
+    <!-- ARCHIVE -->
+    <section class="section" data-section="archive">
+      <h1>Archive</h1>
+      <div id="archiveList"></div>
+    </section>
 
-    </main>
+    <!-- ROOM -->
+    <section class="section" data-section="room">
+      <h1>Virtual Room</h1>
 
-  </div>
+      <div class="room">
+        <div class="item" data-mood="calm">🛏️ Bed</div>
+        <div class="item" data-mood="soft">🪞 Mirror</div>
+        <div class="item" data-mood="bright">🌙 Light</div>
+      </div>
+
+      <p id="roomText"></p>
+    </section>
+
+    <!-- STATS -->
+    <section class="section" data-section="stats">
+      <h1>Stats</h1>
+
+      <label>Energy</label>
+      <input type="range" id="energy">
+
+      <label>Emotional HP</label>
+      <input type="range" id="hp">
+
+      <label>Social Battery</label>
+      <input type="range" id="social">
+    </section>
+
+  </main>
+
+</div>
 
 </body>
 </html>
