@@ -6,8 +6,6 @@
   <title>Evidence I Exist</title>
 
   <link rel="stylesheet" href="style.css"/>
-  <meta name="theme-color" content="#c3a4ff">
-
   <script defer src="script.js"></script>
 </head>
 
@@ -35,6 +33,11 @@
         <p id="streakDisplay"></p>
       </div>
 
+      <div class="card">
+        <h3>🧠 Emotional State</h3>
+        <p id="emotionState">Neutral</p>
+      </div>
+
     </section>
 
     <!-- JOURNAL -->
@@ -47,8 +50,15 @@
       </div>
 
       <div id="journalWrite" class="hidden">
+
         <textarea id="entry" placeholder="write what you feel..."></textarea>
         <button id="saveEntry">Save Entry</button>
+
+        <div class="card">
+          <h3>🌈 Emotion Wheel</h3>
+          <p id="wheel">calm</p>
+        </div>
+
       </div>
 
     </section>
@@ -61,19 +71,22 @@
 
     <!-- ROOM -->
     <section class="section" data-section="room">
+
       <h1>Room</h1>
 
       <div class="room">
-        <div class="item" data-mood="sunset">🌅 Sunset</div>
-        <div class="item" data-mood="calm">🌙 Calm</div>
-        <div class="item" data-mood="dream">✨ Dream</div>
+        <div class="item" data-mood="sunset">🌅</div>
+        <div class="item" data-mood="calm">🌙</div>
+        <div class="item" data-mood="dream">✨</div>
       </div>
 
       <p id="roomText"></p>
+
     </section>
 
     <!-- STATS -->
     <section class="section" data-section="stats">
+
       <h1>Stats</h1>
 
       <label>Energy</label>
@@ -91,7 +104,7 @@
 
 </div>
 
-<!-- 🌙 BOTTOM NAV -->
+<!-- BOTTOM NAV -->
 <nav class="bottom-nav">
   <button class="tab active" data-tab="home">🏠</button>
   <button class="tab" data-tab="journal">📖</button>
