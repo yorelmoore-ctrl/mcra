@@ -3,10 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>MCRA System</title>
+  <title>Evidence I Exist</title>
 
   <link rel="stylesheet" href="style.css"/>
   <link rel="manifest" href="manifest.json">
+
+  <meta name="theme-color" content="#a688d4">
 
   <script defer src="script.js"></script>
 </head>
@@ -15,45 +17,43 @@
 
 <div class="app">
 
+  <!-- SIDEBAR -->
   <aside class="sidebar">
-    <h2 class="logo">MCRA</h2>
 
     <button class="tab active" data-tab="home">Home</button>
     <button class="tab" data-tab="journal">Journal</button>
     <button class="tab" data-tab="archive">Archive</button>
     <button class="tab" data-tab="room">Room</button>
     <button class="tab" data-tab="stats">Stats</button>
+
   </aside>
 
+  <!-- MAIN -->
   <main class="main">
 
     <!-- HOME -->
     <section class="section active" data-section="home">
-      <h1>Welcome Back</h1>
+      <h1>Welcome</h1>
 
       <div class="card">
-        <p id="aiPrompt">Your reflection will appear here.</p>
-        <button id="newPrompt">New Check-in</button>
+        <p id="aiPrompt"></p>
+        <button id="newPrompt">New Reflection</button>
       </div>
 
-      <button id="streakBtn">Log Today</button>
-      <p id="streakDisplay"></p>
+      <div class="card">
+        <button id="streakBtn">Log Today</button>
+        <p id="streakDisplay"></p>
+      </div>
     </section>
 
     <!-- JOURNAL -->
     <section class="section" data-section="journal">
+
       <h1>Journal</h1>
 
-      <div id="lockScreen" class="card">
-        <p>Enter passcode to unlock</p>
-        <input type="password" id="passcodeInput">
-        <button id="unlockBtn">Unlock</button>
-      </div>
+      <textarea id="entry" placeholder="write what you feel..."></textarea>
+      <button id="saveEntry">Save</button>
 
-      <div id="journalArea" class="hidden">
-        <textarea id="entry"></textarea>
-        <button id="saveEntry">Save</button>
-      </div>
     </section>
 
     <!-- ARCHIVE -->
@@ -64,7 +64,7 @@
 
     <!-- ROOM -->
     <section class="section" data-section="room">
-      <h1>Virtual Room</h1>
+      <h1>Room</h1>
 
       <div class="room">
         <div class="item" data-mood="calm">🛏️ Bed</div>
@@ -77,16 +77,18 @@
 
     <!-- STATS -->
     <section class="section" data-section="stats">
+
       <h1>Stats</h1>
 
       <label>Energy</label>
-      <input type="range" id="energy">
+      <input type="range" id="energy" min="0" max="100">
 
       <label>Emotional HP</label>
-      <input type="range" id="hp">
+      <input type="range" id="hp" min="0" max="100">
 
       <label>Social Battery</label>
-      <input type="range" id="social">
+      <input type="range" id="social" min="0" max="100">
+
     </section>
 
   </main>
