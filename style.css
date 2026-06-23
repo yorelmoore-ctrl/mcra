@@ -1,544 +1,89 @@
-/* ======================================
-   RESET
-====================================== */
-
 * {
-
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-
+  font-family: Arial, sans-serif;
 }
 
 body {
-
-  font-family: 'Quicksand', sans-serif;
-
-  min-height: 100vh;
-
-  background:
-    linear-gradient(
-      180deg,
-      #0d0b14 0%,
-      #171323 30%,
-      #231d36 100%
-    );
-
-  color: #f4efff;
-
-  overflow-x: hidden;
-
-  padding: 30px 20px 100px;
-
+  background: #0f0f14;
+  color: #fff;
 }
 
-/* ======================================
-   APP SHELL
-====================================== */
-
-.app-shell {
-
-  width: 100%;
-
+/* APP LAYOUT */
+.app {
   display: flex;
-
-  flex-direction: column;
-
-  align-items: center;
-
+  height: 100vh;
 }
 
-/* ======================================
-   HERO
-====================================== */
-
-.hero {
-
-  position: relative;
-
-  width: 100%;
-
-  max-width: 1300px;
-
-  text-align: center;
-
-  padding: 50px 25px;
-
-  border-radius: 32px;
-
-  margin-bottom: 25px;
-
-  overflow: hidden;
-
-  background:
-    rgba(255,255,255,0.06);
-
-  backdrop-filter: blur(20px);
-
-  border:
-    1px solid rgba(255,255,255,0.08);
-
-}
-
-.hero-glow {
-
-  position: absolute;
-
-  width: 320px;
-
-  height: 320px;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(200,170,255,0.25),
-      transparent 70%
-    );
-
-  top: -100px;
-
-  left: 50%;
-
-  transform:
-    translateX(-50%);
-
-}
-
-.hero h1 {
-
-  font-size: 3rem;
-
-  margin-bottom: 15px;
-
-  position: relative;
-
-  z-index: 1;
-
-}
-
-.hero p {
-
-  opacity: 0.8;
-
-  position: relative;
-
-  z-index: 1;
-
-}
-
-/* ======================================
-   APP LAYOUT
-====================================== */
-
-.app-layout {
-
-  display: flex;
-
-  gap: 20px;
-
-  width: 100%;
-
-  max-width: 1300px;
-
-}
-
-/* ======================================
-   SIDEBAR
-====================================== */
-
+/* SIDEBAR */
 .sidebar {
-
   width: 220px;
-
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 12px;
-
-  position: sticky;
-
-  top: 20px;
-
-  height: fit-content;
-
-}
-
-.nav-btn {
-
-  background:
-    rgba(255,255,255,0.08);
-
-  border:
-    1px solid rgba(255,255,255,0.06);
-
-  border-radius: 18px;
-
-  padding: 15px;
-
-  color: white;
-
-  cursor: pointer;
-
-  text-align: left;
-
-  transition: 0.25s;
-
-}
-
-.nav-btn:hover {
-
-  transform:
-    translateY(-2px);
-
-}
-
-.nav-btn.active {
-
-  background:
-    linear-gradient(
-      135deg,
-      #a688d4,
-      #7c5db0
-    );
-
-}
-
-/* ======================================
-   TAB CONTENT
-====================================== */
-
-.tab-content {
-
-  flex: 1;
-
-}
-
-.tab-panel {
-
-  display: none;
-
-}
-
-.tab-panel.active {
-
-  display: block;
-
-}
-
-/* ======================================
-   PANELS
-====================================== */
-
-.panel {
-
-  background:
-    rgba(255,255,255,0.07);
-
-  backdrop-filter: blur(18px);
-
-  border:
-    1px solid rgba(255,255,255,0.10);
-
-  border-radius: 28px;
-
-  padding: 24px;
-
-  margin-bottom: 24px;
-
-}
-
-.panel h2 {
-
-  margin-bottom: 18px;
-
-  color: #e5cfff;
-
-}
-
-/* ======================================
-   INPUTS
-====================================== */
-
-button,
-textarea,
-select {
-
-  width: 100%;
-
-  border: none;
-
-  border-radius: 18px;
-
-  padding: 15px;
-
-  margin-top: 10px;
-
-  font-family: inherit;
-
-}
-
-textarea,
-select {
-
-  background:
-    rgba(255,255,255,0.08);
-
-  color: white;
-
-}
-
-button {
-
-  background:
-    linear-gradient(
-      135deg,
-      #a688d4,
-      #7c5db0
-    );
-
-  color: white;
-
-  cursor: pointer;
-
-}
-
-textarea {
-
-  min-height: 140px;
-
-}
-
-/* ======================================
-   BREATHING
-====================================== */
-
-.breathing-container {
-
-  display: flex;
-
-  justify-content: center;
-
-  margin: 20px 0;
-
-}
-
-#breathCircle {
-
-  width: 150px;
-
-  height: 150px;
-
-  border-radius: 50%;
-
-  background:
-    radial-gradient(
-      circle,
-      #d7bbff,
-      #8b6ac0
-    );
-
-  animation:
-    breathe 8s infinite ease-in-out;
-
-}
-
-@keyframes breathe {
-
-  0% {
-
-    transform: scale(1);
-
-  }
-
-  50% {
-
-    transform: scale(1.28);
-
-  }
-
-  100% {
-
-    transform: scale(1);
-
-  }
-
-}
-
-#breathText {
-
-  text-align: center;
-
-}
-
-/* ======================================
-   ROOM
-====================================== */
-
-#room {
-
-  display: grid;
-
-  grid-template-columns:
-    repeat(2, 1fr);
-
-  gap: 14px;
-
-}
-
-.room-item {
-
-  background:
-    rgba(255,255,255,0.08);
-
-  border-radius: 20px;
-
+  background: #1a1a23;
   padding: 20px;
-
-  text-align: center;
-
-}
-
-/* ======================================
-   EMOTIONS
-====================================== */
-
-.emotion-grid {
-
-  display: grid;
-
-  grid-template-columns:
-    repeat(2, 1fr);
-
-  gap: 10px;
-
-}
-
-/* ======================================
-   WATER
-====================================== */
-
-.water-controls {
-
   display: flex;
-
-  justify-content: center;
-
-  align-items: center;
-
-  gap: 25px;
-
-}
-
-.water-controls button {
-
-  width: 60px;
-
-}
-
-#waterCount {
-
-  font-size: 2rem;
-
-}
-
-/* ======================================
-   XP
-====================================== */
-
-.xp-bar {
-
-  width: 100%;
-
-  height: 18px;
-
-  background:
-    rgba(255,255,255,0.08);
-
-  border-radius: 999px;
-
-  overflow: hidden;
-
-  margin: 15px 0;
-
-}
-
-#xpFill {
-
-  width: 0%;
-
-  height: 100%;
-
-  background:
-    linear-gradient(
-      90deg,
-      #c8a7ff,
-      #8f69c7
-    );
-
-}
-
-/* ======================================
-   ARCHIVE
-====================================== */
-
-.archive-sub {
-
-  opacity: 0.7;
-
-  margin-bottom: 18px;
-
-}
-
-#archiveContainer {
-
-  display: flex;
-
   flex-direction: column;
-
-  gap: 16px;
-
+  gap: 10px;
 }
 
-.archive-card {
-
-  background:
-    rgba(255,255,255,0.06);
-
-  border-radius: 20px;
-
-  padding: 18px;
-
+.logo {
+  margin-bottom: 20px;
+  font-size: 22px;
 }
 
-/* ======================================
-   MOBILE
-====================================== */
+/* TABS */
+.tab {
+  padding: 10px;
+  border: none;
+  background: #2a2a38;
+  color: white;
+  cursor: pointer;
+  border-radius: 8px;
+  text-align: left;
+  transition: 0.2s;
+}
 
-@media (max-width: 900px) {
+.tab:hover {
+  background: #3a3a50;
+}
 
-  .app-layout {
+.tab.active {
+  background: #6c5ce7;
+}
 
-    flex-direction: column;
+/* MAIN AREA */
+.main {
+  flex: 1;
+  padding: 20px;
+}
 
-  }
+/* SECTIONS */
+.section {
+  display: none;
+}
 
-  .sidebar {
+.section.active {
+  display: block;
+}
 
-    width: 100%;
+/* ROOM */
+.room {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
 
-    flex-direction: row;
+.item {
+  background: #2a2a38;
+  padding: 20px;
+  border-radius: 10px;
+}
 
-    overflow-x: auto;
+/* STATS */
+.stat {
+  margin: 15px 0;
+}
 
-    position: relative;
-
-  }
-
-  .nav-btn {
-
-    min-width: 140px;
-
-  }
-
+input[type="range"] {
+  width: 100%;
 }
