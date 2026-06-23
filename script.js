@@ -1,12 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  /* NAVIGATION */
+  /* NAV */
   const tabs = document.querySelectorAll(".tab");
   const sections = document.querySelectorAll(".section");
 
   tabs.forEach(tab => {
     tab.addEventListener("click", () => {
-
       tabs.forEach(t => t.classList.remove("active"));
       sections.forEach(s => s.classList.remove("active"));
 
@@ -17,22 +16,36 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  /* MOOD SYSTEM */
+  function setMood(mood) {
+    document.body.className = "";
+    document.body.classList.add(`mood-${mood}`);
+  }
+
+  document.querySelectorAll(".item").forEach(i => {
+    i.addEventListener("click", () => {
+      setMood(i.dataset.mood);
+      document.getElementById("roomText").textContent =
+        `Mood: ${i.dataset.mood}`;
+    });
+  });
+
   /* JOURNAL OPEN */
   const cover = document.getElementById("journalCover");
   const write = document.getElementById("journalWrite");
 
-  document.getElementById("openJournal").addEventListener("click", () => {
+  document.getElementById("openJournal").onclick = () => {
     cover.classList.add("hidden");
     write.classList.remove("hidden");
-  });
+  };
 
   /* REFLECTIONS */
   const prompts = [
-    "What do I need today?",
+    "What do I need right now?",
     "What am I avoiding?",
     "Where did I survive today?",
-    "What deserves my attention?",
-    "What would feel soft right now?"
+    "What feels heavy?",
+    "What deserves softness?"
   ];
 
   const ai = document.getElementById("aiPrompt");
@@ -81,15 +94,6 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("entries", JSON.stringify(entries));
     entry.value = "";
   };
-
-  /* ROOM */
-  const roomText = document.getElementById("roomText");
-
-  document.querySelectorAll(".item").forEach(i => {
-    i.onclick = () => {
-      roomText.textContent = `Mood: ${i.dataset.mood}`;
-    };
-  });
 
   /* STARFIELD */
   const canvas = document.getElementById("stars");
