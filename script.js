@@ -6,6 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   tabs.forEach(tab => {
     tab.addEventListener("click", () => {
+
       tabs.forEach(t => t.classList.remove("active"));
       sections.forEach(s => s.classList.remove("active"));
 
@@ -13,20 +14,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
       document.querySelector(`[data-section="${tab.dataset.tab}"]`)
         .classList.add("active");
-    });
-  });
-
-  /* MOOD SYSTEM */
-  function setMood(mood) {
-    document.body.className = "";
-    document.body.classList.add(`mood-${mood}`);
-  }
-
-  document.querySelectorAll(".item").forEach(i => {
-    i.addEventListener("click", () => {
-      setMood(i.dataset.mood);
-      document.getElementById("roomText").textContent =
-        `Mood: ${i.dataset.mood}`;
     });
   });
 
@@ -41,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* REFLECTIONS */
   const prompts = [
-    "What do I need right now?",
+    "What do I need today?",
     "What am I avoiding?",
     "Where did I survive today?",
     "What feels heavy?",
@@ -52,7 +39,6 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("newPrompt").onclick = () => {
     ai.textContent = prompts[Math.floor(Math.random() * prompts.length)];
   };
-
   ai.textContent = prompts[0];
 
   /* STREAK */
@@ -82,6 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* JOURNAL SAVE */
   const entry = document.getElementById("entry");
+  const archive = document.getElementById("archiveList");
 
   let entries = JSON.parse(localStorage.getItem("entries") || "[]");
 
@@ -95,7 +82,38 @@ document.addEventListener("DOMContentLoaded", () => {
     entry.value = "";
   };
 
-  /* STARFIELD */
+  /* EMOTION DETECTION (FIXED) */
+  const wheel = document.getElementById("wheel");
+  const state = document.getElementById("emotionState");
+
+  function detect(text) {
+    text = text.toLowerCase();
+
+    if (text.includes("happy")) return "happy";
+    if (text.includes("sad")) return "sad";
+    if (text.includes("anxious")) return "anxious";
+    return "calm";
+  }
+
+  function setMood(mood) {
+    document.body.className = "";
+    document.body.classList.add(`mood-${mood}`);
+
+    wheel.textContent = mood;
+    state.textContent = mood;
+  }
+
+  entry.addEventListener("input", (e) => {
+    const mood = detect(e.target.value);
+    setMood(mood);
+  });
+
+  /* ROOM */
+  document.querySelectorAll(".item").forEach(i => {
+    i.onclick = () => setMood(i.dataset.mood);
+  });
+
+  /* STARFIELD FIXED */
   const canvas = document.getElementById("stars");
   const ctx = canvas.getContext("2d");
 
