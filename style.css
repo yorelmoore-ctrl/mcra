@@ -28,14 +28,14 @@ body {
   100% { background-position: 0% 50%; }
 }
 
-/* 🌌 STAR LAYER */
+/* STAR CANVAS */
 #stars {
   position: fixed;
   inset: 0;
   z-index: 0;
 }
 
-/* 🌙 MOON */
+/* MOON */
 .moon {
   position: fixed;
   top: 10%;
@@ -47,20 +47,13 @@ body {
   background: radial-gradient(circle, #fff, #c3a4ff, #7a5cff);
   box-shadow: 0 0 35px rgba(195,164,255,0.6);
 
-  animation: float 5s ease-in-out infinite, breathe 6s ease-in-out infinite;
+  animation: float 5s ease-in-out infinite;
   z-index: 1;
 }
 
 @keyframes float {
   0%,100% { transform: translateY(0); }
   50% { transform: translateY(-12px); }
-}
-
-/* 🌬 BREATHING EFFECT */
-@keyframes breathe {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.03); }
-  100% { transform: scale(1); }
 }
 
 /* APP */
@@ -70,7 +63,6 @@ body {
   z-index: 2;
 }
 
-/* MAIN */
 .main {
   height: 100%;
   padding: 20px;
@@ -87,7 +79,6 @@ body {
   padding: 15px;
   border-radius: 16px;
   margin: 10px 0;
-  animation: breathe 6s ease-in-out infinite;
 }
 
 /* BOOK */
@@ -117,12 +108,6 @@ button {
   border: none;
   background: #c3a4ff;
   color: white;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-button:active {
-  transform: scale(0.95);
 }
 
 /* ROOM */
@@ -137,14 +122,9 @@ button:active {
   border-radius: 14px;
   background: rgba(255,255,255,0.08);
   text-align: center;
-  transition: 0.3s;
 }
 
-.item:hover {
-  box-shadow: 0 0 18px rgba(195,164,255,0.4);
-}
-
-/* 🌙 BOTTOM NAV */
+/* NAV */
 .bottom-nav {
   position: fixed;
   bottom: 0;
@@ -168,7 +148,6 @@ button:active {
   border: none;
   background: rgba(255,255,255,0.1);
   color: white;
-  font-size: 18px;
 }
 
 .tab.active {
@@ -176,19 +155,10 @@ button:active {
 }
 
 /* HIDDEN */
-.hidden {
-  display: none;
-}
+.hidden { display: none; }
 
-/* 🌠 MOOD STATES */
-body.mood-sunset {
-  background: linear-gradient(-45deg, #ff9a9e, #ffd6a5, #c3a4ff, #7a5cff);
-}
-
-body.mood-calm {
-  background: linear-gradient(-45deg, #2a1455, #1b1b3a, #0b0b10, #120018);
-}
-
-body.mood-dream {
-  background: linear-gradient(-45deg, #a18cd1, #2a1455, #120018, #3b1b6a);
-}
+/* EMOTION STATES */
+body.mood-happy { background: linear-gradient(-45deg, #ffd6a5, #ff9a9e, #c3a4ff); }
+body.mood-sad { background: linear-gradient(-45deg, #1b1b3a, #2a1455, #0b0b10); }
+body.mood-anxious { background: linear-gradient(-45deg, #3c096c, #240046, #10002b); }
+body.mood-calm { background: linear-gradient(-45deg, #a18cd1, #2a1455, #120018); }
