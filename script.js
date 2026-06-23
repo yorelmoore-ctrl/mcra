@@ -14,105 +14,109 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  /* JOURNAL BOOK */
+  const cover = document.getElementById("journalCover");
+  const write = document.getElementById("journalWrite");
+
+  document.getElementById("openJournal").addEventListener("click", () => {
+    cover.classList.add("hidden");
+    write.classList.remove("hidden");
+  });
+
   /* AI PROMPTS */
   const prompts = [
-    "What do I need emotionally right now?",
-    "What am I avoiding today?",
-    "What did I survive this week?",
-    "What would rest look like?",
-    "What do I deserve more of?"
+    "What do I need emotionally today?",
+    "What am I avoiding?",
+    "Where did I survive something hard?",
+    "What would softness look like?",
+    "What part of me needs care?"
   ];
 
   const aiPrompt = document.getElementById("aiPrompt");
-  const newPrompt = document.getElementById("newPrompt");
-
-  function setPrompt() {
+  document.getElementById("newPrompt").addEventListener("click", () => {
     aiPrompt.textContent = prompts[Math.floor(Math.random() * prompts.length)];
-  }
+  });
+  aiPrompt.textContent = prompts[0];
 
-  if (newPrompt) newPrompt.addEventListener("click", setPrompt);
-  setPrompt();
-
-  /* STREAK SYSTEM */
+  /* STREAK */
   let streak = parseInt(localStorage.getItem("streak") || "0");
   let last = localStorage.getItem("last");
 
-  const streakBtn = document.getElementById("streakBtn");
-  const streakDisplay = document.getElementById("streakDisplay");
+  const display = document.getElementById("streakDisplay");
 
-  function updateStreak() {
-    streakDisplay.textContent = `Streak: ${streak} days`;
+  function update() {
+    display.textContent = `Streak: ${streak}`;
   }
 
-  if (streakBtn) {
-    streakBtn.addEventListener("click", () => {
-      const today = new Date().toDateString();
+  document.getElementById("streakBtn").addEventListener("click", () => {
+    const today = new Date().toDateString();
 
-      if (last !== today) {
-        streak++;
-        last = today;
+    if (last !== today) {
+      streak++;
+      last = today;
+      localStorage.setItem("streak", streak);
+      localStorage.setItem("last", last);
+    }
 
-        localStorage.setItem("streak", streak);
-        localStorage.setItem("last", last);
-      }
+    update();
+  });
 
-      updateStreak();
-    });
-  }
+  update();
 
-  updateStreak();
-
-  /* JOURNAL */
+  /* JOURNAL SAVE */
   const entry = document.getElementById("entry");
-  const save = document.getElementById("saveEntry");
   const archive = document.getElementById("archiveList");
 
   let entries = JSON.parse(localStorage.getItem("entries") || "[]");
 
-  function render() {
-    if (!archive) return;
-    archive.innerHTML = "";
-
-    entries.forEach(e => {
-      const div = document.createElement("div");
-      div.className = "card";
-      div.textContent = `${e.text} (${e.date})`;
-      archive.appendChild(div);
+  document.getElementById("saveEntry").addEventListener("click", () => {
+    entries.push({
+      text: entry.value,
+      date: new Date().toLocaleString()
     });
-  }
 
-  if (save) {
-    save.addEventListener("click", () => {
-      if (!entry.value) return;
+    localStorage.setItem("entries", JSON.stringify(entries));
+    entry.value = "";
+  });
 
-      entries.push({
-        text: entry.value,
-        date: new Date().toLocaleString()
-      });
-
-      localStorage.setItem("entries", JSON.stringify(entries));
-      entry.value = "";
-      render();
-    });
-  }
-
-  render();
-
-  /* ROOM MOOD */
+  /* ROOM */
   const roomText = document.getElementById("roomText");
 
-  document.querySelectorAll(".item").forEach(item => {
-    item.addEventListener("click", () => {
-
-      const moods = {
-        calm: "#1a1230",
-        soft: "#2a1b3d",
-        bright: "#3a2b5a"
-      };
-
-      document.body.style.background = moods[item.dataset.mood];
-      if (roomText) roomText.textContent = `Mood: ${item.dataset.mood}`;
+  document.querySelectorAll(".item").forEach(i => {
+    i.addEventListener("click", () => {
+      roomText.textContent = `Mood: ${i.dataset.mood}`;
     });
   });
+
+  /* STARFIELD */
+  const canvas = document.getElementById("stars");
+  const ctx = canvas.getContext("2d");
+
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const stars = Array.from({ length: 120 }, () => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    r: Math.random() * 1.5
+  }));
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "white";
+
+    stars.forEach(s => {
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fill();
+
+      s.y -= 0.2;
+      if (s.y < 0) s.y = canvas.height;
+    });
+
+    requestAnimationFrame(animate);
+  }
+
+  animate();
 
 });
