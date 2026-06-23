@@ -7,7 +7,6 @@
 
   <link rel="stylesheet" href="style.css"/>
   <link rel="manifest" href="manifest.json">
-
   <meta name="theme-color" content="#a688d4">
 
   <script defer src="script.js"></script>
@@ -15,24 +14,26 @@
 
 <body>
 
+<!-- 🌌 BACKGROUND -->
+<canvas id="stars"></canvas>
+<div class="moon"></div>
+
 <div class="app">
 
-  <!-- SIDEBAR -->
+  <!-- 🌙 EMOJI SIDEBAR -->
   <aside class="sidebar">
-
-    <button class="tab active" data-tab="home">Home</button>
-    <button class="tab" data-tab="journal">Journal</button>
-    <button class="tab" data-tab="archive">Archive</button>
-    <button class="tab" data-tab="room">Room</button>
-    <button class="tab" data-tab="stats">Stats</button>
-
+    <button class="tab active" data-tab="home">🏠</button>
+    <button class="tab" data-tab="journal">📖</button>
+    <button class="tab" data-tab="archive">📚</button>
+    <button class="tab" data-tab="room">🌙</button>
+    <button class="tab" data-tab="stats">📊</button>
   </aside>
 
-  <!-- MAIN -->
   <main class="main">
 
     <!-- HOME -->
     <section class="section active" data-section="home">
+
       <h1>Welcome</h1>
 
       <div class="card">
@@ -44,15 +45,26 @@
         <button id="streakBtn">Log Today</button>
         <p id="streakDisplay"></p>
       </div>
+
+      <div class="card">
+        <button id="soundToggle">🌙 Ambient Sound</button>
+      </div>
+
     </section>
 
-    <!-- JOURNAL -->
+    <!-- JOURNAL (BOOK ENTRY) -->
     <section class="section" data-section="journal">
 
-      <h1>Journal</h1>
+      <div id="journalCover" class="book">
+        <h2>📖 Journal of Self</h2>
+        <p>A private space for your thoughts</p>
+        <button id="openJournal">Open Journal</button>
+      </div>
 
-      <textarea id="entry" placeholder="write what you feel..."></textarea>
-      <button id="saveEntry">Save</button>
+      <div id="journalWrite" class="hidden">
+        <textarea id="entry" placeholder="write what you feel..."></textarea>
+        <button id="saveEntry">Save Entry</button>
+      </div>
 
     </section>
 
@@ -64,6 +76,7 @@
 
     <!-- ROOM -->
     <section class="section" data-section="room">
+
       <h1>Room</h1>
 
       <div class="room">
@@ -73,6 +86,7 @@
       </div>
 
       <p id="roomText"></p>
+
     </section>
 
     <!-- STATS -->
@@ -81,13 +95,13 @@
       <h1>Stats</h1>
 
       <label>Energy</label>
-      <input type="range" id="energy" min="0" max="100">
+      <input type="range" id="energy">
 
       <label>Emotional HP</label>
-      <input type="range" id="hp" min="0" max="100">
+      <input type="range" id="hp">
 
       <label>Social Battery</label>
-      <input type="range" id="social" min="0" max="100">
+      <input type="range" id="social">
 
     </section>
 
