@@ -1,426 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MCRA Journal</title>
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  />
-
-  <title>Evidence I Exist</title>
-
-  <link
-    rel="stylesheet"
-    href="style.css"
-  />
-
-  <link
-    href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;700&display=swap"
-    rel="stylesheet"
-  />
-
+  <link rel="stylesheet" href="style.css"/>
+  <script defer src="script.js"></script>
 </head>
 
-<body class="earth">
+<body>
 
-  <div class="app-shell">
+  <div class="app">
 
-    <!-- HERO -->
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <h2 class="logo">MCRA</h2>
 
-    <header class="hero fade-in">
+      <button class="tab active" data-tab="home">Home</button>
+      <button class="tab" data-tab="archive">Archive</button>
+      <button class="tab" data-tab="room">Virtual Room</button>
+      <button class="tab" data-tab="stats">Stats</button>
+    </aside>
 
-      <div class="hero-glow"></div>
+    <!-- MAIN CONTENT -->
+    <main class="main">
 
-      <h1>Evidence I Exist</h1>
+      <!-- HOME -->
+      <section class="section active" data-section="home">
+        <h1>Welcome Back</h1>
+        <p>Your recovery arc continues here.</p>
+      </section>
 
-      <p>
-        Your immersive sanctuary for healing,
-        recovery, memories, and becoming.
-      </p>
+      <!-- ARCHIVE -->
+      <section class="section" data-section="archive">
+        <h1>Archive</h1>
+        <p>Saved entries will appear here.</p>
+      </section>
 
-    </header>
+      <!-- VIRTUAL ROOM -->
+      <section class="section" data-section="room">
+        <h1>Virtual Room</h1>
+        <div class="room">
+          <div class="item">🛏️ Bed</div>
+          <div class="item">🪞 Mirror</div>
+          <div class="item">🌙 Mood Light</div>
+        </div>
+      </section>
 
-    <!-- APP LAYOUT -->
+      <!-- STATS -->
+      <section class="section" data-section="stats">
+        <h1>Recovery Stats</h1>
 
-    <div class="app-layout">
-
-      <!-- SIDEBAR -->
-
-      <aside class="sidebar">
-
-        <button
-          class="nav-btn active"
-          data-tab="home"
-        >
-          🏡 Home
-        </button>
-
-        <button
-          class="nav-btn"
-          data-tab="mind"
-        >
-          🧠 Mind
-        </button>
-
-        <button
-          class="nav-btn"
-          data-tab="body"
-        >
-          🌿 Body
-        </button>
-
-        <button
-          class="nav-btn"
-          data-tab="sanctuary"
-        >
-          ✨ Sanctuary
-        </button>
-
-        <button
-          class="nav-btn"
-          data-tab="growth"
-        >
-          🌙 Growth
-        </button>
-
-        <button
-          class="nav-btn"
-          data-tab="archive"
-        >
-          📦 Archive
-        </button>
-
-        <button
-          class="nav-btn"
-          data-tab="music"
-        >
-          🎵 Music
-        </button>
-
-      </aside>
-
-      <!-- MAIN CONTENT -->
-
-      <main class="tab-content">
-
-        <!-- HOME -->
-
-        <div
-          class="tab-panel active"
-          id="home"
-        >
-
-          <section class="panel">
-
-            <h2>Daily Reminder</h2>
-
-            <p id="dailyQuote">
-              Healing is not linear.
-            </p>
-
-          </section>
-
-          <section class="panel">
-
-            <h2>Recovery Level</h2>
-
-            <div class="xp-bar">
-
-              <div id="xpFill"></div>
-
-            </div>
-
-            <p id="xpText">
-              Level 1 — 0 XP
-            </p>
-
-            <button id="gainXP">
-              Complete Healing Quest
-            </button>
-
-          </section>
-
+        <div class="stat">
+          Energy
+          <input type="range" min="0" max="100" value="50">
         </div>
 
-        <!-- MIND -->
-
-        <div
-          class="tab-panel"
-          id="mind"
-        >
-
-          <section class="panel">
-
-            <h2>Daily Reflection</h2>
-
-            <textarea
-              id="journal"
-              placeholder="Write your thoughts..."
-            ></textarea>
-
-            <button id="saveJournal">
-              Save Entry
-            </button>
-
-          </section>
-
-          <section class="panel">
-
-            <h2>Dream Journal</h2>
-
-            <textarea
-              id="dreamJournal"
-              placeholder="Record your dreams..."
-            ></textarea>
-
-            <button id="saveDreams">
-              Save Dream
-            </button>
-
-          </section>
-
-          <section class="panel">
-
-            <h2>Emotional Wheel</h2>
-
-            <div class="emotion-grid">
-
-              <button class="emotion">
-                Hopeful
-              </button>
-
-              <button class="emotion">
-                Peaceful
-              </button>
-
-              <button class="emotion">
-                Overwhelmed
-              </button>
-
-              <button class="emotion">
-                Grounded
-              </button>
-
-            </div>
-
-          </section>
-
+        <div class="stat">
+          Emotional HP
+          <input type="range" min="0" max="100" value="70">
         </div>
 
-        <!-- BODY -->
-
-        <div
-          class="tab-panel"
-          id="body"
-        >
-
-          <section class="panel">
-
-            <h2>Breathing Sanctuary</h2>
-
-            <div class="breathing-container">
-
-              <div id="breathCircle"></div>
-
-            </div>
-
-            <p id="breathText">
-              Inhale...
-            </p>
-
-          </section>
-
-          <section class="panel">
-
-            <h2>Water Tracker</h2>
-
-            <div class="water-controls">
-
-              <button id="waterMinus">
-                -
-              </button>
-
-              <span id="waterCount">
-                0
-              </span>
-
-              <button id="waterPlus">
-                +
-              </button>
-
-            </div>
-
-          </section>
-
-          <section class="panel">
-
-            <h2>Symptom Tracker</h2>
-
-            <textarea
-              id="symptoms"
-              placeholder="Track symptoms..."
-            ></textarea>
-
-            <button id="saveSymptoms">
-              Save Symptoms
-            </button>
-
-          </section>
-
+        <div class="stat">
+          Social Battery
+          <input type="range" min="0" max="100" value="40">
         </div>
+      </section>
 
-        <!-- SANCTUARY -->
-
-        <div
-          class="tab-panel"
-          id="sanctuary"
-        >
-
-          <section class="panel">
-
-            <h2>Virtual Sanctuary Room</h2>
-
-            <div id="room">
-
-              <div class="room-item">
-                🕯️ Candle
-              </div>
-
-              <div class="room-item">
-                🌿 Plants
-              </div>
-
-              <div class="room-item">
-                📚 Books
-              </div>
-
-              <div class="room-item">
-                ☁️ Cloud Bed
-              </div>
-
-              <div class="room-item">
-                🌙 Moon Window
-              </div>
-
-              <div class="room-item">
-                ✨ Crystal Corner
-              </div>
-
-            </div>
-
-          </section>
-
-          <section class="panel">
-
-            <h2>Tarot Guidance</h2>
-
-            <button id="drawTarot">
-              Draw Card
-            </button>
-
-            <p id="tarotResult"></p>
-
-          </section>
-
-        </div>
-
-        <!-- GROWTH -->
-
-        <div
-          class="tab-panel"
-          id="growth"
-        >
-
-          <section class="panel">
-
-            <h2>Achievements</h2>
-
-            <div id="badges"></div>
-
-          </section>
-
-          <section class="panel">
-
-            <h2>Recovery Streak</h2>
-
-            <p id="streakText">
-              1 Day Streak
-            </p>
-
-          </section>
-
-        </div>
-
-        <!-- ARCHIVE -->
-
-        <div
-          class="tab-panel"
-          id="archive"
-        >
-
-          <section class="panel">
-
-            <h2>Memory Archive</h2>
-
-            <p class="archive-sub">
-
-              Your preserved reflections,
-              dreams, and healing journey.
-
-            </p>
-
-            <div id="archiveContainer">
-
-            </div>
-
-          </section>
-
-        </div>
-
-        <!-- MUSIC -->
-
-        <div
-          class="tab-panel"
-          id="music"
-        >
-
-          <section class="panel">
-
-            <h2>Sanctuary Sounds</h2>
-
-            <select id="musicSelector">
-
-              <option value="assets/music/chrysalis.mp3">
-                Chrysalis
-              </option>
-
-              <option value="assets/music/jazzy-love.mp3">
-                Jazzy Love
-              </option>
-
-            </select>
-
-            <audio
-              id="musicPlayer"
-              controls
-              loop
-            ></audio>
-
-          </section>
-
-        </div>
-
-      </main>
-
-    </div>
+    </main>
 
   </div>
 
-  <script src="script.js"></script>
-
 </body>
-
 </html>
