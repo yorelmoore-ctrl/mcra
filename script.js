@@ -1,23 +1,26 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  /* ================= TAB SYSTEM ================= */
+  /* TAB SYSTEM */
   const tabs = document.querySelectorAll(".tab");
   const sections = document.querySelectorAll(".section");
 
-  function switchTab(tab) {
-    tabs.forEach(t => t.classList.toggle("active", t.dataset.tab === tab));
-    sections.forEach(s => s.classList.toggle("active", s.dataset.section === tab));
-  }
+  tabs.forEach(tab => {
+    tab.addEventListener("click", () => {
+      tabs.forEach(t => t.classList.remove("active"));
+      sections.forEach(s => s.classList.remove("active"));
 
-  tabs.forEach(t => t.addEventListener("click", () => switchTab(t.dataset.tab)));
+      tab.classList.add("active");
+      document.querySelector(`[data-section="${tab.dataset.tab}"]`).classList.add("active");
+    });
+  });
 
-  /* ================= AI PROMPTS ================= */
+  /* AI PROMPTS */
   const prompts = [
-    "What did I survive this week that I’m not giving myself credit for?",
-    "What emotion is sitting in my body right now?",
-    "What do I need but keep avoiding?",
-    "What would rest look like today?",
-    "Where did I show strength recently?"
+    "What do I need emotionally right now?",
+    "What am I avoiding today?",
+    "What did I survive this week?",
+    "What would rest look like?",
+    "What do I deserve more of?"
   ];
 
   const aiPrompt = document.getElementById("aiPrompt");
@@ -27,61 +30,49 @@ document.addEventListener("DOMContentLoaded", () => {
     aiPrompt.textContent = prompts[Math.floor(Math.random() * prompts.length)];
   }
 
-  newPrompt.addEventListener("click", setPrompt);
+  if (newPrompt) newPrompt.addEventListener("click", setPrompt);
   setPrompt();
 
-  /* ================= STREAK SYSTEM ================= */
-  const streakDisplay = document.getElementById("streakDisplay");
-  const streakBtn = document.getElementById("streakBtn");
+  /* STREAK SYSTEM */
+  let streak = parseInt(localStorage.getItem("streak") || "0");
+  let last = localStorage.getItem("last");
 
-  let streak = parseInt(localStorage.getItem("mcra_streak") || "0");
-  let last = localStorage.getItem("mcra_last");
+  const streakBtn = document.getElementById("streakBtn");
+  const streakDisplay = document.getElementById("streakDisplay");
 
   function updateStreak() {
     streakDisplay.textContent = `Streak: ${streak} days`;
   }
 
-  streakBtn.addEventListener("click", () => {
-    const today = new Date().toDateString();
+  if (streakBtn) {
+    streakBtn.addEventListener("click", () => {
+      const today = new Date().toDateString();
 
-    if (last !== today) {
-      streak++;
-      localStorage.setItem("mcra_last", today);
-      localStorage.setItem("mcra_streak", streak);
-    }
+      if (last !== today) {
+        streak++;
+        last = today;
 
-    updateStreak();
-  });
+        localStorage.setItem("streak", streak);
+        localStorage.setItem("last", last);
+      }
+
+      updateStreak();
+    });
+  }
 
   updateStreak();
 
-  /* ================= JOURNAL LOCK ================= */
-  const pass = "1234";
-
-  const lockScreen = document.getElementById("lockScreen");
-  const journalArea = document.getElementById("journalArea");
-  const unlockBtn = document.getElementById("unlockBtn");
-
-  unlockBtn.addEventListener("click", () => {
-    const input = document.getElementById("passcodeInput").value;
-
-    if (input === pass) {
-      lockScreen.classList.add("hidden");
-      journalArea.classList.remove("hidden");
-    } else {
-      alert("Wrong passcode");
-    }
-  });
-
-  /* ================= JOURNAL SAVE ================= */
+  /* JOURNAL */
   const entry = document.getElementById("entry");
   const save = document.getElementById("saveEntry");
   const archive = document.getElementById("archiveList");
 
-  let entries = JSON.parse(localStorage.getItem("mcra_entries") || "[]");
+  let entries = JSON.parse(localStorage.getItem("entries") || "[]");
 
   function render() {
+    if (!archive) return;
     archive.innerHTML = "";
+
     entries.forEach(e => {
       const div = document.createElement("div");
       div.className = "card";
@@ -90,34 +81,37 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  save.addEventListener("click", () => {
-    entries.push({
-      text: entry.value,
-      date: new Date().toLocaleString()
-    });
+  if (save) {
+    save.addEventListener("click", () => {
+      if (!entry.value) return;
 
-    localStorage.setItem("mcra_entries", JSON.stringify(entries));
-    entry.value = "";
-    render();
-  });
+      entries.push({
+        text: entry.value,
+        date: new Date().toLocaleString()
+      });
+
+      localStorage.setItem("entries", JSON.stringify(entries));
+      entry.value = "";
+      render();
+    });
+  }
 
   render();
 
-  /* ================= ROOM LIGHTING ================= */
+  /* ROOM MOOD */
   const roomText = document.getElementById("roomText");
 
   document.querySelectorAll(".item").forEach(item => {
     item.addEventListener("click", () => {
-      const mood = item.dataset.mood;
 
-      const lights = {
-        calm: "#0f172a",
-        soft: "#1f1b2e",
-        bright: "#2a2d3a"
+      const moods = {
+        calm: "#1a1230",
+        soft: "#2a1b3d",
+        bright: "#3a2b5a"
       };
 
-      document.body.style.setProperty("--bg", lights[mood]);
-      roomText.textContent = `Mood shifted: ${mood}`;
+      document.body.style.background = moods[item.dataset.mood];
+      if (roomText) roomText.textContent = `Mood: ${item.dataset.mood}`;
     });
   });
 
